@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if ($db->checkUser($email)) {
+        if ($db->checkUser($email, null)) {
             if ($db->login($password)) {
                 $response['error'] = FALSE;
                 $response['message'] = 'User information';
-                $response['user'] = $db->getUser($email);
+                $response['user'] = $db->getUser($email, null);
             } else {
                 $response['error'] = TRUE;
                 $response['message'] = 'Password incorrect';
