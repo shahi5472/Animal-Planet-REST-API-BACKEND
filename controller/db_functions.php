@@ -115,9 +115,9 @@ class DB_Functions
 
     function getAllHospital()
     {
-        $result = $this->conn->prepare("SELECT * FROM `hospitals`");
+        $result = $this->conn->prepare("SELECT * FROM hospitals");
         $result->execute();
-        $hospitals = $result->get_result()->fetch_assoc();
+        $hospitals = $result->get_result()->fetch_all(MYSQLI_ASSOC);
         $result->close();
         return $hospitals;
     }
