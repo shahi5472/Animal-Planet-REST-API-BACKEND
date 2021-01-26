@@ -10,9 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
         if ($db->checkUser(null, $id)) {
-            $response['error'] = FALSE;
-            $response['message'] = 'Successful';
-            $response['user'] = [];
+            if ($db->deleteUser($id)) {
+                $response['error'] = FALSE;
+                $response['message'] = 'Successful';
+            } else {
+                $response['error'] = TRUE;
+                $response['message'] = 'failed';
+            }
         } else {
             $response['error'] = TRUE;
             $response['message'] = 'User not found';

@@ -92,11 +92,11 @@ class DB_Functions
 
     function deleteUser($id)
     {
-        $result = $this->conn->prepare("DELETE FROM `users` WHERE id =?");
+        $result = $this->conn->prepare("DELETE FROM users WHERE id =?");
         $result->bind_param("i", $id);
-        $hospital = $result->execute();
+        $user = $result->execute();
         $result->close();
-        if ($hospital) {
+        if ($user) {
             return true;
         } else {
             return false;
