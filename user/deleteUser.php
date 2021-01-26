@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db_functions.php';
+require_once '../controller/db_functions.php';
 
 $db = new DB_Functions();
 

@@ -1,40 +1,41 @@
 <?php
 
-require_once 'db_functions.php';
+require_once '../controller/db_functions.php';
 
 $db = new DB_Functions();
 
 $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['id'])) {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
 
-        $id = $_POST['id'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $user_type = $_POST['user_type'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
         $specialists = $_POST['specialists'];
+        $password = $_POST['password'];
+        $created_at = date("Y-m-d") . ' ' . date("h:i:s");
         $updated_at = date("Y-m-d") . ' ' . date("h:i:s");
 
-        if ($db->checkUser(null, $id)) {
-            if ($db->updateUser($id, $name, $email, $user_type, $phone, $address, $specialists, $updated_at)) {
+        if ($db->checkUser($email, null)) {
+            $response['error'] = TRUE;
+            $response['message'] = $email . ' already register';
+        } else {
+            if ($db->register($name, $email, $user_type, $phone, $address, $specialists, $password, $created_at, $updated_at)) {
                 $response['error'] = FALSE;
-                $response['message'] = 'Update successful';
-                $response['user'] = $db->getUser(null, $id);
+                $response['message'] = 'Registration successful';
+                $response['user'] = $db->getUser($email, null);
             } else {
                 $response['error'] = TRUE;
-                $response['message'] = 'Update failed';
+                $response['message'] = 'Register failed, try again';
             }
-        } else {
-            $response['error'] = TRUE;
-            $response['message'] = 'User not found';
         }
         echo json_encode($response);
     } else {
         $response['error'] = TRUE;
-        $response['message'] = 'Something is wrong, try again';
+        $response['message'] = 'Something wrong, try again';
         echo json_encode($response);
     }
 } else {
