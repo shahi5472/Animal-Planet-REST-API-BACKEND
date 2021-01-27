@@ -185,4 +185,47 @@ class DB_Functions
             return false;
         }
     }
+
+    /*
+     * get all post with user information
+     */
+
+    function getAllPost()
+    {
+        $result = $this->conn->prepare("SELECT * FROM posts");
+        $result->execute();
+        $hospitals = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $hospitals;
+    }
+
+    function getImages($image_src, $user_id)
+    {
+        $result = $this->conn->prepare("SELECT * FROM images WHERE image_src =? and user_id =?");
+        $result->bind_param("ss", $image_src, $user_id);
+        $result->execute();
+        $images = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $images;
+    }
+
+    function getAllPostComments($post_id)
+    {
+        $result = $this->conn->prepare("SELECT * FROM comments WHERE post_id = ?");
+        $result->bind_param("i", $post_id);
+        $result->execute();
+        $comments = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $comments;
+    }
+
+    function getAllCommentReplies($comment_id)
+    {
+        $result = $this->conn->prepare("SELECT * FROM comment_replies WHERE comment_id = ?");
+        $result->bind_param("i", $comment_id);
+        $result->execute();
+        $replies = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $replies;
+    }
 }
