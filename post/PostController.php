@@ -2,11 +2,40 @@
 
 require_once '../controller/db_functions.php';
 
-class PostController extends DB_Functions
+class PostController
 {
     private static function db()
     {
         return new DB_Functions();
+    }
+
+    public static function index()
+    {
+        $posts = self::db()->getAllPost();
+
+        for ($i = 0; $i < count($posts); $i++) {
+            $response = $posts[$i];
+            $response['user'] = self::db()->getUser(null, $posts[$i]['user_id']);
+            $response['doctor'] = self::db()->getUser(null, $posts[$i]['doctor_id']);
+            $response['images'] = self::db()->getImages('post', $posts[$i]['id']);
+
+            $comments = self::db()->getAllPostComments($posts[$i]['id']);
+
+            for ($k = 0; $k < count($comments); $k++) {
+                $response['comments'][] = $comments[$k];
+                $response['comments'][$k]['user'] = self::db()->getUser(null, $comments[$k]['user_id']);
+
+                $response['comments'][$k]['replies'] = self::db()->getAllCommentReplies($comments[$k]['id']);
+
+                for ($l = 0; $l < count($response['comments'][$k]['replies']); $l++) {
+                    $response['comments'][$k]['replies'][$l]['user'] = self::db()->getUser(null, $response['comments'][$k]['replies'][$l]['user_id']);
+                }
+
+            }
+
+            $item[] = $response;
+        }
+        return $item;
     }
 
     public static function getSinglePostById($id)

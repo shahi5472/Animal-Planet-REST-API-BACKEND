@@ -35,3 +35,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $response['message'] = 'Wrong request method';
     echo json_encode($response);
 }
+
+
