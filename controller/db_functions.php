@@ -2,6 +2,7 @@
 
 class DB_Functions
 {
+
     private $conn;
 
     function __construct()
@@ -188,6 +189,10 @@ class DB_Functions
 
     /*
      * get all post with user information
+     * Post create
+     * post update
+     * post doctor taken update
+     * post view count
      */
 
     function getAllPost()
@@ -228,4 +233,29 @@ class DB_Functions
         $result->close();
         return $replies;
     }
+
+    function getSinglePost($id)
+    {
+        $result = $this->conn->prepare("SELECT * FROM `posts` WHERE `id` = ?");
+        $result->bind_param("i", $id);
+        $result->execute();
+        $singlePost = $result->get_result()->fetch_assoc();
+        $result->close();
+        return $singlePost;
+    }
+
+    function createPost($title, $description, $userId, $created_at, $updated_at)
+    {
+        $result = $this->conn->prepare("INSERT INTO `posts`(`title`, `description`, `user_id`,`created_at`, `updated_at`) VALUES (?,?,?,?,?);");
+        $result->bind_param("ssiss", $title, $description, $userId, $created_at, $updated_at);
+        $result->execute();
+        $post = $result->insert_id;
+        $result->close();
+        if ($post) {
+            return $post;
+        } else {
+            return false;
+        }
+    }
+
 }
