@@ -2,13 +2,8 @@
 
 require_once '../controller/db_functions.php';
 
-class PostController
+class PostController extends DB_Functions
 {
-    private static function db()
-    {
-        return new DB_Functions();
-    }
-
     public static function index()
     {
         $posts = self::db()->getAllPost();

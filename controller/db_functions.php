@@ -17,6 +17,11 @@ class DB_Functions
         // TODO: Implement __destruct() method.
     }
 
+    public static function db()
+    {
+        return new DB_Functions();
+    }
+
     function checkUser($email, $id)
     {
         $result = $this->conn->prepare("SELECT email FROM users WHERE email=? OR id = ? LIMIT 1");
@@ -257,5 +262,4 @@ class DB_Functions
             return false;
         }
     }
-
 }
