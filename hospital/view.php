@@ -6,9 +6,9 @@ $db = new DB_Functions();
 
 $response = array();
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
         if ($db->checkHospital($id)) {
 
