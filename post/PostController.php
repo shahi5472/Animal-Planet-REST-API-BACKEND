@@ -63,4 +63,14 @@ class PostController extends DB_Functions
     {
         self::db()->updateViewCount(($lastNumber + 1), $id);
     }
+
+    public static function doctorTakenUpdate($doctorId, $postId)
+    {
+        return parent::db()->updateDoctorTaken($doctorId, $postId);
+    }
+
+    public static function deletePost($postId)
+    {
+
+    }
 }

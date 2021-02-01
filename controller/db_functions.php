@@ -275,4 +275,17 @@ class DB_Functions
             return false;
         }
     }
+
+    function updateDoctorTaken($doctorId, $postId, $ansIs = true)
+    {
+        $result = $this->conn->prepare("UPDATE `posts` SET `doctor_id`=?, `is_answered`=? WHERE `id` = ?");
+        $result->bind_param("isi", $doctorId, $ansIs, $postId);
+        $doctorTaken = $result->execute();
+        $result->close();
+        if ($doctorTaken) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
