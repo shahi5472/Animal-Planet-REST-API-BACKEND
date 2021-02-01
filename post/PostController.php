@@ -37,6 +37,8 @@ class PostController extends DB_Functions
     {
         $post_data = self::db()->getSinglePost($id);
 
+        self::viewCountUpdate($post_data['view_count'], $id);
+
         $response['post'] = $post_data;
         $response['post']['user'] = self::db()->getUser(null, $post_data['user_id']);
         $response['post']['doctor'] = self::db()->getUser(null, $post_data['doctor_id']);
@@ -55,5 +57,10 @@ class PostController extends DB_Functions
             }
         }
         return $response;
+    }
+
+    public static function viewCountUpdate($lastNumber, $id)
+    {
+        self::db()->updateViewCount(($lastNumber + 1), $id);
     }
 }

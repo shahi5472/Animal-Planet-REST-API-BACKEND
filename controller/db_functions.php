@@ -262,4 +262,17 @@ class DB_Functions
             return false;
         }
     }
+
+    function updateViewCount($lastNumber, $id)
+    {
+        $result = $this->conn->prepare("UPDATE `posts` SET `view_count`= ? WHERE `id` = ?");
+        $result->bind_param("ii", $lastNumber, $id);
+        $view = $result->execute();
+        $result->close();
+        if ($view) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
