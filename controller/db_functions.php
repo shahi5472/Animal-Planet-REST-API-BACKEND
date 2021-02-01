@@ -1,6 +1,6 @@
 <?php
 
-class DB_Functions
+class  DB_Functions
 {
 
     private $conn;
@@ -198,6 +198,10 @@ class DB_Functions
      * post update
      * post doctor taken update
      * post view count
+     * post delete by id
+     *
+     * delete comment
+     * delete reply comment
      */
 
     function getAllPost()
@@ -283,6 +287,46 @@ class DB_Functions
         $doctorTaken = $result->execute();
         $result->close();
         if ($doctorTaken) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deletePost($postId)
+    {
+        $result = $this->conn->prepare("DELETE FROM `posts` WHERE id =?");
+        $result->bind_param("i", $postId);
+        $post = $result->execute();
+        $result->close();
+        if ($post) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deleteComment($commentId)
+    {
+        $result = $this->conn->prepare("DELETE FROM `comments` WHERE `post_id` IN (?)");
+        $result->bind_param("i", $commentId);
+        $comment = $result->execute();
+        $result->close();
+        if ($comment) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deleteCommentReply($commentReplyId)
+    {
+        $result = $this->conn->prepare("DELETE FROM `comment_replies` WHERE `comment_id` IN (?)");
+        $result->bind_param("i", $commentReplyId);
+        $commentReply = $result->execute();
+        $result->execute();
+        $result->close();
+        if ($commentReply) {
             return true;
         } else {
             return false;

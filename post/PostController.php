@@ -69,8 +69,8 @@ class PostController extends DB_Functions
         return parent::db()->updateDoctorTaken($doctorId, $postId);
     }
 
-    public static function deletePost($postId)
+    public static function deletePostById($postId)
     {
-
+        return parent::db()->deletePost($postId);
     }
 }
