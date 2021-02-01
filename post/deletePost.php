@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $id = $_POST['id'];
 
         if (PostController::deletePostById($id)) {
-            $deletedCommentId = CommentsController::deleteCommentsByPostId($id);
-            if ($deletedCommentId) {
+            if (CommentsController::deleteCommentsByPostId($id)) {
                 $response['error'] = FALSE;
                 $response['message'] = 'Successful';
             } else {
@@ -22,9 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $response['error'] = TRUE;
             $response['message'] = 'Try again';
         }
-
-        $response['affected_rows'] = $deletedCommentId;
-
         echo json_encode($response);
     } else {
         $response['error'] = TRUE;

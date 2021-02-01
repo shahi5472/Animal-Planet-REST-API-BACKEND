@@ -110,3 +110,10 @@
  * post_id
  * http://localhost:8080/animal_planet_raw/post/doctorTaken.php
  */
+
+/*
+ * TODO end point for post delete with comments, METHOD POST
+ * parameter is
+ * id
+ * http://localhost:8080/animal_planet_raw/post/deletePost.php
+ */
