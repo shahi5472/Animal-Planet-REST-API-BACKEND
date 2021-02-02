@@ -370,4 +370,17 @@ class  DB_Functions
             return false;
         }
     }
+
+    function insertReplyComment($commentId, $userId, $message, $createAt, $updateAt)
+    {
+        $result = $this->conn->prepare("INSERT INTO `comment_replies`(`comment_id`, `user_id`, `message`, `created_at`, `updated_at`) VALUES (?,?,?,?,?);");
+        $result->bind_param("iisss", $commentId, $userId, $message, $createAt, $updateAt);
+        $replyComment = $result->execute();
+        $result->close();
+        if ($replyComment) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
