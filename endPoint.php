@@ -131,3 +131,21 @@
  * id
  * http://localhost:8080/animal_planet_raw/comments/deleteCommentReply.php
  */
+
+/*
+ * TODO: end point for create comment, METHOD POST
+ * parameter are
+ * postId
+ * userId
+ * message
+ * http://localhost:8080/animal_planet_raw/comments/createComment.php
+ */
+
+/*
+ * TODO: end point for create reply comment, METHOD POST
+ * parameter are
+ * commentId
+ * userId
+ * message
+ * http://localhost:8080/animal_planet_raw/comments/createReplyComment.php
+ */
