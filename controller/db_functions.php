@@ -348,10 +348,23 @@ class  DB_Functions
     function deleteCommentReplyById($id)
     {
         $result = $this->conn->prepare("DELETE FROM `comment_replies` WHERE `id` = ?");
-        $result->bind_param("i", $commentReplyId);
+        $result->bind_param("i", $id);
         $deleteReply = $result->execute();
         $result->close();
         if ($deleteReply) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function insertComment($postId, $userId, $message, $createAt, $updateAt)
+    {
+        $result = $this->conn->prepare("INSERT INTO `comments`(`post_id`, `user_id`, `message`, `created_at`, `updated_at`) VALUES (?,?,?,?,?);");
+        $result->bind_param("iisss", $postId, $userId, $message, $createAt, $updateAt);
+        $comment = $result->execute();
+        $result->close();
+        if ($comment) {
             return true;
         } else {
             return false;
