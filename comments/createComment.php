@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $response['message'] = 'invalid error';
         }
 
-
         echo json_encode($response);
     } else {
         $response['error'] = TRUE;
