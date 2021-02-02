@@ -13,5 +13,15 @@ class CommentsController extends DB_Functions
     {
         return parent::db()->deleteCommentReply($commentId);
     }
+
+    public static function deleteCommentsById($id)
+    {
+        return parent::db()->deleteCommentById($id);
+    }
+
+    public static function deleteCommentRepliesById($id)
+    {
+        return parent::db()->deleteCommentReplyById($id);
+    }
 }
 

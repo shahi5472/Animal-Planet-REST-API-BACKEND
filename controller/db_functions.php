@@ -319,14 +319,39 @@ class  DB_Functions
         }
     }
 
+    function deleteCommentById($id)
+    {
+        $result = $this->conn->prepare("DELETE FROM comments WHERE id = ?");
+        $result->bind_param("i", $id);
+        $delete = $result->execute();
+        $result->close();
+        if ($delete) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function deleteCommentReply($commentReplyId)
     {
         $result = $this->conn->prepare("DELETE FROM `comment_replies` WHERE `comment_id` IN (?)");
         $result->bind_param("i", $commentReplyId);
         $commentReply = $result->execute();
-        $result->execute();
         $result->close();
         if ($commentReply) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deleteCommentReplyById($id)
+    {
+        $result = $this->conn->prepare("DELETE FROM `comment_replies` WHERE `id` = ?");
+        $result->bind_param("i", $commentReplyId);
+        $deleteReply = $result->execute();
+        $result->close();
+        if ($deleteReply) {
             return true;
         } else {
             return false;

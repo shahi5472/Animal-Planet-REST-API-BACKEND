@@ -1,26 +1,22 @@
 <?php
 
-require_once '../post/PostController.php';
 require_once '../comments/Comments.php';
 
 $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['id'])) {
+
         $id = $_POST['id'];
 
-        if (PostController::deletePostById($id)) {
-            if (CommentsController::deleteCommentsByPostId($id)) {
-                $response['error'] = FALSE;
-                $response['message'] = 'Successful';
-            } else {
-                $response['error'] = TRUE;
-                $response['message'] = 'Unsuccessful';
-            }
+        if (CommentsController::deleteCommentsById($id)) {
+            $response['error'] = FALSE;
+            $response['message'] = 'Delete comment';
         } else {
             $response['error'] = TRUE;
-            $response['message'] = 'Try again';
+            $response['message'] = 'Can\'t delete this comment';
         }
+
         echo json_encode($response);
     } else {
         $response['error'] = TRUE;

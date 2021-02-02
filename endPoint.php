@@ -117,3 +117,17 @@
  * id
  * http://localhost:8080/animal_planet_raw/post/deletePost.php
  */
+
+/*
+ * TODO: end point for comment delete by comment id, Method POST
+ * parameter is
+ * id
+ * http://localhost:8080/animal_planet_raw/comments/deleteComment.php
+ */
+
+/*
+ * TODO: end point for delete comment reply by reply id, Method POST
+ * parameter is
+ * id
+ * http://localhost:8080/animal_planet_raw/comments/deleteCommentReply.php
+ */
