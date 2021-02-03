@@ -149,3 +149,18 @@
  * message
  * http://localhost:8080/animal_planet_raw/comments/createReplyComment.php
  */
+
+/*
+ * TODO: end point for create notification, METHOD POST
+ * parameter are
+ * userId
+ * data
+ * http://localhost:8080/animal_planet_raw/notification/create.php
+ */
+
+/*
+ * TODO: end point for get notification by user id, METHOD GET
+ * parameter is
+ * userId
+ * http://localhost:8080/animal_planet_raw/notification/index.php
+ */

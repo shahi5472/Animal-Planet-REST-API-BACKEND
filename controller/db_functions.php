@@ -383,4 +383,34 @@ class  DB_Functions
             return false;
         }
     }
+
+    /*
+     * notification
+     * get all notification by user id
+     * create notification
+     * read notification
+     */
+
+    function getAllNotificationByUserId($userId)
+    {
+        $result = $this->conn->prepare("SELECT * FROM `notifications` WHERE `user_id` = ?");
+        $result->bind_param("i", $userId);
+        $result->execute();
+        $notifications = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $notifications;
+    }
+
+    function createNotification($userId, $data, $createAt, $updateAt)
+    {
+        $result = $this->conn->prepare("INSERT INTO `notifications`(`user_id`, `data`, `created_at`, `updated_at`) VALUES (?,?,?,?)");
+        $result->bind_param("isss", $userId, $data, $createAt, $updateAt);
+        $notification = $result->execute();
+        $result->close();
+        if ($notification) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
