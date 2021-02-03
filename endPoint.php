@@ -164,3 +164,11 @@
  * userId
  * http://localhost:8080/animal_planet_raw/notification/index.php
  */
+
+/*
+ * TODO: end point for read notification, METHOD GET
+ * parameter are
+ * userId
+ * notificationId
+ * http://localhost:8080/animal_planet_raw/notification/notificationRead.php
+ */

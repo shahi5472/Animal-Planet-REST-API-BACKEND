@@ -413,4 +413,17 @@ class  DB_Functions
             return false;
         }
     }
+
+    function readNotification($notificationId, $userId, $dateTime)
+    {
+        $result = $this->conn->prepare("UPDATE `notifications` SET `read_at`= ? WHERE `user_id` = ? OR id IN (?)");
+        $result->bind_param("sii", $dateTime, $userId, $notificationId);
+        $notification = $result->execute();
+        $result->close();
+        if ($notification) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

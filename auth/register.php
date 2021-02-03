@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $address = $_POST['address'];
         $specialists = $_POST['specialists'];
         $password = $_POST['password'];
-        $created_at = date("Y-m-d") . ' ' . date("h:i:s");
-        $updated_at = date("Y-m-d") . ' ' . date("h:i:s");
+        $created_at = date("Y-m-d h:i:s");
+        $updated_at = date("Y-m-d h:i:s");
 
         if ($db->checkUser($email, null)) {
             $response['error'] = TRUE;
