@@ -426,4 +426,18 @@ class  DB_Functions
             return false;
         }
     }
+
+    function getCountValue($type)
+    {
+        $query = "SELECT * FROM `users` WHERE `user_type` = '$type';";
+        $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
+        return $result->num_rows;
+    }
+
+    function getCountPostValue()
+    {
+        $query = "SELECT * FROM `posts`";
+        $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
+        return $result->num_rows;
+    }
 }
