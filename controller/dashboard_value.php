@@ -1,6 +1,7 @@
 <?php
 
 include "../controller/db_functions.php";
+include "../post/PostController.php";
 
 class DashboardValue extends DB_Functions
 {
@@ -19,5 +20,13 @@ class DashboardValue extends DB_Functions
         return self::db()->getCountPostValue();
     }
 
+    public static function getNewPost()
+    {
+        return PostController::index();
+    }
 
+    public static function getAllDoctor()
+    {
+        return self::db()->getDoctors();
+    }
 }

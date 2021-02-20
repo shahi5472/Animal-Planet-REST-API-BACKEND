@@ -64,8 +64,6 @@ include "../controller/dashboard_value.php";
         <div class="col-md-12">
 
             <h2>New Posts</h2>
-
-
             <div class="table-responsive">
                 <table class="table table-light">
                     <thead class="text-center">
@@ -78,49 +76,32 @@ include "../controller/dashboard_value.php";
                         <th scope="col">Edit</th>
                     </tr>
                     </thead>
+
                     <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Ria</td>
-                        <td>125</td>
-                        <td>P123</td>
-                        <td>False</td>
-                        <td>
-                            <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
-                            <a href="#"><i class="fas fa-trash delete"></i></a
-                            >&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Ria</td>
-                        <td>125</td>
-                        <td>P123</td>
-                        <td>False</td>
-                        <td>
-                            <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
-                            <a href="#"><i class="fas fa-trash delete"></i></a
-                            >&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Ria</td>
-                        <td>125</td>
-                        <td>P123</td>
-                        <td>False</td>
-                        <td>
-                            <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
-                            <a href="#"><i class="fas fa-trash delete"></i></a
-                            >&nbsp;
-                        </td>
-                    </tr>
+                    <?php
+                    $result = DashboardValue::getNewPost();
+                    for ($i = 0; $i < count($result); $i++) {
+                        ?>
+                        <tr>
+                            <th><?php echo $i + 1; ?></th>
+                            <td><?php echo $result[$i]['user']['name']; ?></td>
+                            <td><?php echo $result[$i]['user']['id']; ?></td>
+                            <td><?php echo $result[$i]['id']; ?></td>
+                            <td><?php echo $result[$i]['is_answered'] == 0 ? 'False' : 'True'; ?></td>
+                            <td>
+                                <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
+                                <a href="#"><i class="fas fa-trash delete"></i></a>&nbsp;
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div hidden class="row">
         <div class="col-md-12">
 
             <h2>New Comments</h2>
@@ -136,26 +117,23 @@ include "../controller/dashboard_value.php";
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>P111</th>
-                        <td>Ria</td>
-                        <td>125</td>
-                        <td>
-                            <a href="#"><i class="far fa-edit eye"></i></a>&nbsp;
-                            <a href="#"><i class="fas fa-trash delete"></i></a
-                            >&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>P112</th>
-                        <td>Ria</td>
-                        <td>125</td>
-                        <td>
-                            <a href="#"><i class="far fa-edit eye"></i></a>&nbsp;
-                            <a href="#"><i class="fas fa-trash delete"></i></a
-                            >&nbsp;
-                        </td>
-                    </tr>
+                    <?php
+                    $result = DashboardValue::getNewPost();
+                    for ($i = 0; $i < count($result); $i++) {
+                        ?>
+                        <tr>
+                            <th>P111 <?php echo count($result[$i]['comments']); ?></th>
+                            <td>Ria</td>
+                            <td>125</td>
+                            <td>
+                                <a href="#"><i class="far fa-edit eye"></i></a>&nbsp;
+                                <a href="#"><i class="fas fa-trash delete"></i></a
+                                >&nbsp;
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>

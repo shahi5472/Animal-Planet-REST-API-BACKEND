@@ -153,35 +153,35 @@ include '../auth/Session.php';
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="allDoctors.html">
+            <a class="nav-link" href="index.php?page=allDoctors">
                 <i class="fas fa-fw fa-table"></i>
                 <span>All Doctors</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="addDoctor.html">
+            <a class="nav-link" href="index.php?page=addDoctor">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Add Doctor</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="allHospitals.html">
+            <a class="nav-link" href="index.php?page=allHospitals">
                 <i class="fas fa-fw fa-table"></i>
                 <span>All Hospital</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="addHospitals.html">
+            <a class="nav-link" href="index.php?page=addHospital">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Add Hospital</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="allPosts.html">
+            <a class="nav-link" href="index.php?page=allPosts">
                 <i class="fas fa-fw fa-table"></i>
                 <span>All Post</span>
             </a>

@@ -440,4 +440,11 @@ class  DB_Functions
         $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
         return $result->num_rows;
     }
+
+    function getDoctors()
+    {
+        $query = "SELECT * FROM `users` WHERE `user_type` = 'doctor';";
+        $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
+        return $result;
+    }
 }
