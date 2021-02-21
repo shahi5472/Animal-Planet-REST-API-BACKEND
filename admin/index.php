@@ -54,6 +54,34 @@ include '../auth/Session.php';
 </head>
 
 <body id="page-top">
+
+<!-- Bootstrap core JavaScript-->
+<script src="resource/vendor/jquery/jquery.min.js"></script>
+<script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="resource/vendor/chart.js/Chart.min.js"></script>
+<script src="resource/vendor/datatables/jquery.dataTables.js"></script>
+<script src="resource/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="resource/js/main.min.js"></script>
+
+<!-- MDB core JavaScript -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"
+></script>
+
+<!-- Demo scripts for this page-->
+<script src="resource/js/demo/datatables-demo.js"></script>
+<script src="resource/js/demo/chart-area-demo.js"></script>
+<script src="resource/js/demo/chart-bar-new.js"></script>
+<script src="resource/js/demo/cal.js"></script>
+
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="index.php">Woofs&Paws</a>
 
@@ -321,34 +349,6 @@ include '../auth/Session.php';
     }
 </script>
 
-<!-- Bootstrap core JavaScript-->
-<script src="resource/vendor/jquery/jquery.min.js"></script>
-<script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Page level plugin JavaScript-->
-<script src="resource/vendor/chart.js/Chart.min.js"></script>
-<script src="resource/vendor/datatables/jquery.dataTables.js"></script>
-<script src="resource/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="resource/js/main.min.js"></script>
-
-<!-- MDB core JavaScript -->
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"
-></script>
-
-<!-- Demo scripts for this page-->
-<script src="resource/js/demo/datatables-demo.js"></script>
-<script src="resource/js/demo/chart-area-demo.js"></script>
-<script src="resource/js/demo/chart-bar-new.js"></script>
-<script src="resource/js/demo/cal.js"></script>
-
-
 <script>
 
     $(document).ready(function () {
@@ -371,7 +371,6 @@ include '../auth/Session.php';
     });
 
 </script>
-
 
 </body>
 </html>

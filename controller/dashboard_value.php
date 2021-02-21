@@ -29,4 +29,9 @@ class DashboardValue extends DB_Functions
     {
         return self::db()->getDoctors();
     }
+
+    public static function getAllHospitalList()
+    {
+        return self::db()->getAllHospital();
+    }
 }
