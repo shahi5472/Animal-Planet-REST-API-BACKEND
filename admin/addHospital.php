@@ -8,7 +8,7 @@
         <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Add Doctor</li>
+        <li class="breadcrumb-item active">Add Hospital</li>
     </ol>
 
     <div class="row">
@@ -22,42 +22,24 @@
                     <div class="doctorForm">
                         <div class="row">
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                                <input hidden
-                                       type="text"
-                                       class="form-control"
-                                       id="user_type"
-                                       name="user_type"
-                                       value="doctor"
-                                />
                                 <div class="form-group">
-                                    <label for="fname">Name:</label>
+                                    <label for="name">Name:</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="form-fname"
+                                            id="name"
                                             name="name"
                                     />
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input
-                                            type="email"
-                                            class="form-control"
-                                            id="form-email"
-                                            name="email"
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="email">Contact</label>
+                                    <label for="contact">Contact</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="phone"
-                                            name="phone"
+                                            id="contact"
+                                            name="contact"
                                     />
                                 </div>
                             </div>
@@ -74,61 +56,44 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="email">Upload doctor Photo </label>
+                                    <label for="email">Upload Hospital Photo </label>
                                     <input
                                             type="file"
                                             name="profile_pt"
                                             id="profile_pt"
                                             onchange="previewImage(this,'View_area')"
                                     />
-                                    <div
-                                            id="View_area"
-                                            style="
-                            position: relative;
+                                    <div id="View_area"
+                                         style="position: relative;
                             width: 100px;
                             height: 100px;
                             color: black;
                             border: 0px solid black;
-                            dispaly: inline;
-                          "
-                                    ></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="specialists">Speciality</label>
-                                    <select class="form-control" id="specialists" name="specialists">
-                                        <!-- <option>Select a Speciality</option> -->
-                                        <option>Dog</option>
-                                        <option>Cat</option>
-                                        <option>Birds</option>
-                                        <option>Rabbit</option>
-                                    </select>
+                            dispaly: inline;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </form>
-                <button type="button" id="create" class="btn btn-success btn-lg">
+
+                <button id="create_hospital" type="button" class="btn btn-success btn-lg">
                     Create
                 </button>
 
-                <button type="button" id="reset" class="btn btn-danger btn-lg">
+                <button id="clear_hospital" type="button" class="btn btn-danger btn-lg">
                     Reset
                 </button>
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
 
     $(document).ready(function () {
-        $(document).on('click', '#create', function () {
+        $(document).on('click', '#create_hospital', function () {
             $.ajax({
-                url: '../user/createDoctor.php',
+                url: '../hospital/create.php',
                 method: 'post',
                 data: $("#form-data").serialize(),
                 success: function (response) {
@@ -139,9 +104,10 @@
             });
         });
 
-        $(document).on('click', '#reset', function () {
+        $(document).on('click', '#clear_hospital', function () {
             $("#form-data")[0].reset();
         })
     });
 
 </script>
+

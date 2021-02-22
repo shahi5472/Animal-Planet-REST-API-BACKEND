@@ -349,29 +349,6 @@ include '../auth/Session.php';
     }
 </script>
 
-<script>
-
-    $(document).ready(function () {
-        $(document).on('click', '#create', function () {
-            $.ajax({
-                url: '../user/createDoctor.php',
-                method: 'post',
-                data: $("#form-data").serialize(),
-                success: function (response) {
-                    //$("#form-data")[0].reset();
-                    alert(response);
-                    console.log(response);
-                }
-            });
-        });
-
-        $(document).on('click', '#reset', function () {
-            $("#form-data")[0].reset();
-        })
-    });
-
-</script>
-
 </body>
 </html>
 

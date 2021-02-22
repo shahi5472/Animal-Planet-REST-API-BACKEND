@@ -8,6 +8,7 @@ $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['name']) && isset($_POST['address']) && isset($_POST['contact'])) {
+
         $name = $_POST['name'];
         $address = $_POST['address'];
         $contact = $_POST['contact'];
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo json_encode($response);
     } else {
         $response['error'] = TRUE;
-        $response['message'] = 'Something is wrong, try again';
+        $response['message'] = 'Something is wrong, try again ' . $_POST['name'];
         echo json_encode($response);
     }
 } else {
