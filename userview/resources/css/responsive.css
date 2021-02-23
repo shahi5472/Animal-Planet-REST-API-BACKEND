@@ -1,0 +1,59 @@
+@media only screen and (max-width: 768px) {
+  body {
+    text-align: center;
+  }
+
+  nav {
+    text-align: left;
+  }
+
+  .index-header {
+    height: auto;
+    background: none;
+    background-color: #f5ffff;
+  }
+  .header-section-description {
+    margin-bottom: 50px;
+  }
+  .header-section-description h2 {
+    padding-top: 20px;
+    font-size: 48px;
+    font-weight: 600;
+  }
+
+  .about-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+  }
+  .about-content {
+    padding-top: 0px;
+    /* order: 1; */
+  }
+  .about-img {
+    width: 100%;
+    /* order: 2; */
+  }
+
+  .ask-question{
+    text-align: left;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 992px) and (min-width: 769px) {
+  .index-header {
+    height: auto;
+  }
+  .header-section-description h2 {
+    padding-top: 20px;
+    font-size: 48px;
+  }
+
+  .about-content {
+    padding-top: 0px;
+  }
+}
+
+

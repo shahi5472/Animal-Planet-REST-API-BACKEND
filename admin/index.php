@@ -29,7 +29,7 @@ if (Session::get("user_type") != 'admin') {
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Woofs&Paws - Dashboard <?php echo Session::get("user_type"); ?></title>
+    <title>Woofs&Paws - Dashboard</title>
 
     <!-- Bootstrap core CSS-->
     <link
