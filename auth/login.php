@@ -1,6 +1,9 @@
 <?php
 
 require_once '../controller/db_functions.php';
+require_once '../auth/Session.php';
+
+Session::init();
 
 $db = new DB_Functions();
 
@@ -16,6 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $response['error'] = FALSE;
                 $response['message'] = 'User information';
                 $response['user'] = $db->getUser($email, null);
+                $userData = $db->getUser($email, null);
+                Session::set("id", $userData['id']);
+                Session::set("name", $userData['name']);
+                Session::set("email", $userData['email']);
+                Session::set("user_type", $userData['user_type']);
+                Session::set("phone", $userData['phone']);
+                Session::set("address", $userData['address']);
+                Session::set("specialists", $userData['specialists']);
             } else {
                 $response['error'] = TRUE;
                 $response['message'] = 'Password incorrect';

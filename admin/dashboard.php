@@ -90,7 +90,8 @@ include "../controller/dashboard_value.php";
                             <td><?php echo $result[$i]['is_answered'] == 0 ? 'False' : 'True'; ?></td>
                             <td>
                                 <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
-                                <a href="#"><i class="fas fa-trash delete"></i></a>&nbsp;
+                                <a id="deletePost" data-id="<?php echo $result[$i]['id']; ?>" href="#"><i
+                                            class="fas fa-trash delete"></i></a>&nbsp;
                             </td>
                         </tr>
                         <?php
@@ -152,3 +153,30 @@ include "../controller/dashboard_value.php";
         </div>
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $(document).on('click', '#deletePost', function () {
+            var el = this;
+            var id = $(this).data('id');
+            $.ajax({
+                url: '../post/deletePost.php',
+                method: 'post',
+                data: {
+                    'id': id,
+                },
+                success: function (response) {
+                    $(el).closest('tr').css('background', 'tomato');
+                    $(el).closest('tr').fadeOut(800, function () {
+                        $(el).remove();
+                    });
+                    console.log(response);
+                }
+            });
+        });
+    });
+
+</script>
+

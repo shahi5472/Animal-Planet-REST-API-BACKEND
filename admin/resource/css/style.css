@@ -1,0 +1,355 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Helvetica, sans-serif;
+}
+p,
+a {
+  font-family: sans-serif;
+}
+
+.header-color {
+  color: #0b0837;
+}
+.text-color {
+  color: #a8a7a7;
+}
+.theme-button {
+  background-color: #044f61;
+}
+.primary-button {
+  background-color: #ffb548;
+  color: #000000;
+  font-weight: 600;
+}
+.standard-button {
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.section {
+  padding: 10vh 0;
+}
+.section-header {
+  font-size: 48px;
+  color: #0b0837;
+  margin: 20px 0;
+}
+
+/* nav */
+
+.nav-item .nav-link {
+  color: black !important;
+  font-weight: 600;
+}
+
+/* header */
+.index-header {
+  background-image: url("../images/header-bg.png");
+  background-color: #f5ffff;
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header-section-description {
+  padding-bottom: 30px;
+}
+
+.header-section-description h2 {
+  padding-top: 20px;
+  font-size: 68px;
+  font-weight: 600;
+}
+.header-section-description p {
+  margin: 20px 0;
+}
+.header-section-description button {
+  box-shadow: 1px 2px 5px 1px #bbbbbb;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+.highlight-red {
+  color: red;
+}
+
+.header-section-image img {
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+/* about */
+.about-section {
+  margin: 20px 0;
+}
+.about-img img {
+  width: 100%;
+}
+.about-content {
+  padding-top: 100px;
+}
+.about-content p {
+  padding: 20px 0;
+}
+
+/* why us */
+.why-us-section {
+  background-color: #f5ffff;
+}
+
+.why-us-card {
+  background-color: #044f61;
+  color: white;
+  padding: 10%;
+  border-radius: 5px;
+  margin: 20px 0;
+  box-shadow: 1px 2px 5px 1px #bbbbbb;
+}
+
+.why-us-card:hover {
+  box-shadow: 2px 5px 10px 5px #adadad;
+}
+.why-us-card h4 {
+  font-size: 24px;
+}
+.why-us-card p {
+  margin: 20px 0 0;
+  font-size: 16px;
+  color: #e3e3e3;
+}
+
+/* need help */
+.need-help-section {
+  /* background-color: #f5ffff; */
+  text-align: center;
+}
+
+.need-help-card {
+  /* border: 2px solid #044f61; */
+  background-color: #f5ffff;
+  padding: 10%;
+  border-radius: 5px;
+  margin: 20px 0;
+  box-shadow: 1px 2px 5px 1px #bbbbbb;
+}
+.need-help-card:hover {
+  box-shadow: 2px 5px 10px 5px #adadad;
+}
+.need-help-card h4 {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+.need-help-card p {
+  margin: 20px 0;
+  font-size: 16px;
+  color: #252525;
+}
+.need-help-button {
+  color: rgb(0, 0, 0);
+  /* background-color: #044f61; */
+  background-color: #ffb548;
+}
+
+/* footer */
+.footer-section {
+  background-color: #044f61;
+  color: #ffb548;
+}
+.footer-section ul {
+  list-style-type: none;
+}
+.footer-section ul li {
+  margin: 10px 0;
+}
+
+/* title section */
+.title-section {
+  text-align: center;
+  background-color: #044f61;
+  padding: 5vh 0;
+  color: #ffffff;
+}
+
+/* all doctors */
+.doctor-card {
+  text-align: center;
+  height: 400px;
+  margin: 20px 0;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.doctor-card:hover {
+  box-shadow: 2px 5px 10px 5px #adadad;
+}
+.doc-name {
+  text-align: center;
+}
+.doc-img img {
+  width: 50%;
+  padding: 20px;
+  /* height: 430px; */
+}
+.doc-description {
+  padding: 10px 0;
+}
+
+/* all question */
+
+.question-query {
+  padding: 20px 0;
+}
+
+.ask-question,
+.find-question {
+  margin-bottom: 10px;
+}
+
+.single-question {
+  padding: 20px;
+  background-color: #f5ffff;
+  border: 1px solid #044f61;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.single-question:hover {
+  box-shadow: 2px 5px 10px 1px #bbbbbb;
+}
+
+.single-question a {
+  text-decoration: none;
+}
+
+.single-question-title h4 {
+  color: #044f61;
+  font-weight: 600;
+}
+
+.single-question-body p {
+  color: #a8a7a7;
+}
+.single-question-tags {
+  display: flex;
+  justify-content: start;
+}
+.single-tag {
+  background-color: #044f61;
+  color: white;
+  width: auto;
+  margin: 0 20px 0 0;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+
+/* all hospitals */
+.hospital-card {
+  text-align: center;
+  height: 350px;
+  margin: 20px 0;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.hospital-card:hover {
+  box-shadow: 2px 5px 10px 5px #adadad;
+}
+.doc-name {
+  text-align: center;
+}
+.hospital-img img {
+  width: 50%;
+  padding: 20px 0px;
+  /* height: 430px; */
+}
+.hospital-description {
+  padding: 10px 0;
+}
+
+/* question post */
+.question-post {
+  border-bottom: 1px solid #044f61;
+  padding-bottom: 20px;
+}
+
+.question-posted {
+  display: flex;
+  margin: 20px 0 0;
+}
+.question-posted-time,
+.question-posted-date {
+  margin-right: 20px;
+  color: #044f61;
+  font-weight: 700;
+}
+.question-title {
+  color: #044f61;
+  font-weight: 600;
+}
+.question-description {
+  color: #707070;
+}
+
+.question-images {
+  display: flex;
+}
+.question-images img {
+  width: 200px;
+  height: 150px;
+  margin-right: 10px;
+  border: 1px solid #ffb548;
+}
+.single-comment{
+  padding: 0 0 20px;
+  margin: 10px 0px;
+}
+.comment{
+  border: 1px solid #044f61;
+  padding: 10px;
+  border-radius: 5px;
+}
+.comment-posted{
+  display: flex;
+}
+.comment-posted-time, .comment-posted-date{
+  margin: 0 20px 5px 0;
+  color: #044f61;
+}
+.comment-reply{
+  padding-left: 20px;
+  margin: 5px 0;
+}
+.comment-pro-pic{
+  width: 50px;
+  border-radius: 50%;
+  height: 50px;
+}
+
+/* profile */
+
+.profile-img{
+  display: flex;
+  justify-content: center;
+}
+
+.profile-img img{
+  width: 100px;
+}
+
+/* ask-question */
+
+.ask-question{
+  margin: 50px;
+}

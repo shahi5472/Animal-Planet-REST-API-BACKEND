@@ -2,13 +2,18 @@
 
 include '../auth/Session.php';
 
-//Session::init();
+Session::init();
 
-//if (Session::get("id") == false) {
-//    header("Location:login.php");
-//    exit();
-//}
+if (Session::get("id") == false) {
+    header("Location:login.php");
+    exit();
+}
 
+if (Session::get("user_type") != 'admin') {
+    Session::destroy();
+    header("Location:login.php");
+    exit();
+}
 
 ?>
 
@@ -24,7 +29,7 @@ include '../auth/Session.php';
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Woofs&Paws - Dashboard</title>
+    <title>Woofs&Paws - Dashboard <?php echo Session::get("user_type"); ?></title>
 
     <!-- Bootstrap core CSS-->
     <link
@@ -140,15 +145,13 @@ include '../auth/Session.php';
                         class="rounded-circle"
                         alt="Avatar"
                 />
-                <span>User Name</span>
+                <span><?php echo Session::get("name"); ?></span>
                 <i class="icon-submenu lnr lnr-chevron-down"></i>
             </a>
             <div
                     class="dropdown-menu dropdown-menu-right"
                     aria-labelledby="userDropdown"
             >
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Activity Log</a>
                 <div class="dropdown-divider"></div>
                 <a
                         class="dropdown-item"
@@ -168,7 +171,7 @@ include '../auth/Session.php';
         <li class="nav-item dropdown active">
             <a
                     class="nav-link"
-                    href="#"
+                    href="index.php"
                     id="pagesDropdown"
                     role="button"
                     data-toggle="dropdown"
@@ -273,7 +276,7 @@ include '../auth/Session.php';
                 >
                     Cancel
                 </button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="../auth/logout.php">Logout</a>
             </div>
         </div>
     </div>
