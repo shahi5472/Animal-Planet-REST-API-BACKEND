@@ -54,30 +54,58 @@
 <script>
 
     $(document).ready(function () {
-        $.ajax({
-            url: '../post/index.php',
-            method: 'get',
-            success: function (response) {
-                var json = JSON.parse(response);
-                var x = 0;
-                $.each(json, function (key, value) {
-                    console.log(value)
-                    x++;
-                    $('.showList').append('<tr><th>' +
+        loadData();
+
+        function loadData() {
+            $.ajax({
+                url: '../post/index.php',
+                method: 'get',
+                success: function (response) {
+                    var json = JSON.parse(response);
+                    var x = 0;
+                    $.each(json, function (key, value) {
+                        console.log(value)
+                        x++;
+                        $('.showList').append('<tr><th>' +
                         '' + x + '' +
                         '</th><td>' + value.user.name + '' +
                         '</td><td>' + value.user.email + '' +
                         '</td><td>' + value.user.phone + '' +
                         '</td><td>' + value.user.address + '' +
-                        '</td><td>' + value.user.created_at + '' +
-                        '</td><td>' + (value.is_answered != 0 ? 'Yes' : 'No') + '' +
-                        '</td><td>' +
-                        '<a href="#"><i class="far fa-eye eye"></i></a>&nbsp' +
-                        '<a href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp' +
-                        '<a href="#"><i class="fas fa-times delete"></i></a>&nbsp' +
-                        '</td></tr>');
-                });
-            }
+                        '</td><td>' + (value.created_at == null ? '' : value.created_at ) + '' +
+                            '</td><td>' + (value.is_answered != 0 ? 'Yes' : 'No') + '' +
+                            '</td><td>' +
+                            '<a id="showPost" data-id="' + value.id + '" href="#"><i class="far fa-eye eye"></i></a>&nbsp' +
+                            '<a id="reload" data-id="' + value.id + '" href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp' +
+                            '<a id="deletePost" data-id="' + value.id + '" href="#"><i class="fas fa-times delete"></i></a>&nbsp' +
+                            '</td></tr>');
+                    });
+                }
+            });
+        }
+
+        $(document).on('click', '#showPost', function () {
+            var id = $(this).data('id');
+            alert("Id " + id)
+        });
+
+        $(document).on('click', '#deletePost', function () {
+            var el = this;
+            var id = $(this).data('id');
+            $.ajax({
+                url: '../post/deletePost.php',
+                method: 'post',
+                data: {
+                    'id': id,
+                },
+                success: function (response) {
+                    $(el).closest('tr').css('background', 'tomato');
+                    $(el).closest('tr').fadeOut(800, function () {
+                        $(el).remove();
+                    });
+                    console.log(response);
+                }
+            });
         });
     });
 
