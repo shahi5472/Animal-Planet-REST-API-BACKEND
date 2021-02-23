@@ -48,10 +48,9 @@ include "../controller/dashboard_value.php";
                             <td><?php echo date_format(date_create($item['created_at']), "d-M-Y H:m:s"); ?></td>
                             <td>
                                 <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
-                                <a href="#"><i class="fas fa-sync-alt refresh"></i></a
-                                >&nbsp;
-                                <a href="#"><i class="fas fa-times delete"></i></a
-                                >&nbsp;
+                                <a href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp;
+                                <a id="deleteDoctor" data-id="<?php echo $item['id']; ?>" href="#"> <i
+                                            class="fas fa-times delete"></i></a>&nbsp;
                             </td>
                         </tr>
                         <?php
@@ -75,3 +74,32 @@ include "../controller/dashboard_value.php";
         </div>
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $(document).on('click', '#deleteDoctor', function () {
+            var el = this;
+            var id = $(this).data('id');
+            $.ajax({
+                url: '../user/deleteUser.php',
+                method: 'post',
+                data: {
+                    'id': id,
+                },
+                success: function (response) {
+                    $(el).closest('tr').css('background', 'tomato');
+                    $(el).closest('tr').fadeOut(800, function () {
+                        $(el).remove();
+                    });
+                    console.log(response);
+                }
+            });
+
+        });
+    });
+
+</script>
+
+

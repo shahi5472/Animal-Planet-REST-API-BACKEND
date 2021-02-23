@@ -1,6 +1,3 @@
-<?php
-include "../controller/dashboard_value.php";
-?>
 <div class="container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
@@ -54,14 +51,41 @@ include "../controller/dashboard_value.php";
             method: 'get',
             success: function (response) {
                 var json = JSON.parse(response);
-                //console.log(json.hospitals);
                 var x = 0;
                 $.each(json.hospitals, function (key, value) {
                     x++;
-                    $('.showList').append('<tr><th>' + x + '</th><td>' + value['name'] + '</td><td>' + value['contact'] + '</td><td>' + value['address'] + '</td><td><a href="#"><i class="far fa-eye eye"></i></a>&nbsp;<a href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp;<a href="#"><i class="fas fa-times delete"></i></a>&nbsp;</td></tr>');
+                    $('.showList').append('<tr><th>' + x + '' +
+                        '</th><td>' + value['name'] + '' +
+                        '</td><td>' + value['contact'] + '' +
+                        '</td><td>' + value['address'] + '' +
+                        '</td><td>' +
+                        '<a href="#"><i class="far fa-eye eye"></i></a>&nbsp;' +
+                        '<a href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp;' +
+                        '<a id="deleteHospital" data-id="' + value.id + '"  href="#"><i class="fas fa-times delete"></i></a>&nbsp;' +
+                        '</td></tr>');
                 });
             }
         });
+
+        $(document).on('click', '#deleteHospital', function () {
+            var el = this;
+            var id = $(this).data('id');
+            $.ajax({
+                url: '../hospital/delete.php',
+                method: 'post',
+                data: {
+                    'id': id,
+                },
+                success: function (response) {
+                    $(el).closest('tr').css('background', 'tomato');
+                    $(el).closest('tr').fadeOut(800, function () {
+                        $(el).remove();
+                    });
+                    console.log(response);
+                }
+            });
+        });
+
     });
 
 </script>
