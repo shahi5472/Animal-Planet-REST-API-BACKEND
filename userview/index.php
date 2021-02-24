@@ -1,3 +1,11 @@
+<?php
+
+include '../auth/Session.php';
+
+Session::init();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
