@@ -21,7 +21,7 @@ if (Session::get("id") != false) {
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="resource/css/login.css"/>
+    <link rel="stylesheet" href="./resource/css/login.css"/>
 </head>
 
 
@@ -66,7 +66,7 @@ if (Session::get("id") != false) {
                     Sign up
                 </button>
             </div>
-            <img src="resource/img/log.svg" class="image" alt=""/>
+            <img src="./resource/img/log.svg" class="image" alt=""/>
         </div>
         <div class="panel right-panel">
             <div class="content">
@@ -79,15 +79,15 @@ if (Session::get("id") != false) {
                     Sign in
                 </button>
             </div>
-            <img src="resource/img/register.svg" class="image" alt=""/>
+            <img src="./resource/img/register.svg" class="image" alt=""/>
         </div>
     </div>
 </div>
 
-<script src="resource/vendor/jquery/jquery.min.js"></script>
+<script src="./resource/vendor/jquery/jquery.min.js"></script>
 
 <!-- for login js file -->
-<script src="resource/js/login.js"></script>
+<script src="./resource/js/login.js"></script>
 
 <script>
 
