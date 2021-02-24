@@ -75,12 +75,15 @@ if (isset($_GET['id'])) {
     <div class="container">
         <h2 class="question-title"><?php echo $response['post']['title']; ?></h2>
         <div class="question-posted">
-            <p class="question-posted-time"><?php
-                echo date_format(date_create($response['post']['created_at']), "H-m-S a"); ?></p>
-            <p class="question-posted-date"><?php
-                echo date_format(date_create($response['post']['created_at']), "d-M-Y"); ?></p>
-            <p>Posted by - <?php
-                echo ucwords($response['post']['user']['name']); ?></p>
+            <p class="question-posted-time">
+                <?php echo date_format(date_create($response['post']['created_at']), "H-m-S a"); ?>
+            </p>
+            <p class="question-posted-date">
+                <?php echo date_format(date_create($response['post']['created_at']), "d-M-Y"); ?>
+            </p>
+            <p>Posted by -
+                <?php echo ucwords($response['post']['user']['name']); ?>
+            </p>
         </div>
         <p class="question-description"><?php echo $response['post']['description']; ?></p>
         <div class="question-images">

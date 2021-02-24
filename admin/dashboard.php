@@ -89,7 +89,8 @@ include "../controller/dashboard_value.php";
                             <td><?php echo $result[$i]['id']; ?></td>
                             <td><?php echo $result[$i]['is_answered'] == 0 ? 'False' : 'True'; ?></td>
                             <td>
-                                <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
+                                <a href="index.php?page=singlePost&id=<?php echo $result[$i]['id']; ?>"><i
+                                            class="far fa-eye eye"></i></a>&nbsp;
                                 <a id="deletePost" data-id="<?php echo $result[$i]['id']; ?>" href="#"><i
                                             class="fas fa-trash delete"></i></a>&nbsp;
                             </td>

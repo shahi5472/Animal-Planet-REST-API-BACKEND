@@ -67,12 +67,12 @@
                         console.log(value)
                         x++;
                         $('.showList').append('<tr><th>' +
-                        '' + x + '' +
-                        '</th><td>' + value.user.name + '' +
-                        '</td><td>' + value.user.email + '' +
-                        '</td><td>' + value.user.phone + '' +
-                        '</td><td>' + value.user.address + '' +
-                        '</td><td>' + (value.created_at == null ? '' : value.created_at ) + '' +
+                            '' + x + '' +
+                            '</th><td>' + value.user.name + '' +
+                            '</td><td>' + value.user.email + '' +
+                            '</td><td>' + value.user.phone + '' +
+                            '</td><td>' + value.user.address + '' +
+                            '</td><td>' + (value.created_at == null ? '' : value.created_at) + '' +
                             '</td><td>' + (value.is_answered != 0 ? 'Yes' : 'No') + '' +
                             '</td><td>' +
                             '<a id="showPost" data-id="' + value.id + '" href="#"><i class="far fa-eye eye"></i></a>&nbsp' +

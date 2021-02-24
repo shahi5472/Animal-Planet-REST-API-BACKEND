@@ -1142,6 +1142,44 @@ ul.timeline > li:before {
   height: 50px;
 }
 
+
+/* view doctor */
+.single-doctor {
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+.single-doctor .doctor-name{
+  padding: 20px 0;
+  color: #0465F0;
+}
+.single-doctor-image img{
+  width: 100%;
+}
+.single-doctor .doctor-details{
+  padding: 20px 0px;
+}
+
+/* view hospital */
+.single-hospital {
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+.single-hospital .hospital-name{
+  padding: 20px 0;
+  color: #0465F0;
+}
+.single-hospital-image img{
+  width: 100%;
+}
+.single-hospital .hospital-details{
+  padding: 20px 0px;
+}
+
+
 /* footer */
 
 .footer {

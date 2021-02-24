@@ -33,59 +33,60 @@ if (Session::get("user_type") != 'admin') {
 
     <!-- Bootstrap core CSS-->
     <link
-            href="resource/vendor/bootstrap/css/bootstrap.min.css"
+            href="./resource/vendor/bootstrap/css/bootstrap.min.css"
             rel="stylesheet"
     />
 
     <!-- Custom fonts for this template-->
     <link
-            href="resource/vendor/fontawesome-free/css/all.min.css"
+            href="./resource/vendor/fontawesome-free/css/all.min.css"
             rel="stylesheet"
             type="text/css"
     />
 
     <!-- Page level plugin CSS-->
     <link
-            href="resource/vendor/datatables/dataTables.bootstrap4.css"
+            href="./resource/vendor/datatables/dataTables.bootstrap4.css"
             rel="stylesheet"
     />
 
     <!-- Custom styles for this template-->
-    <link href="resource/css/main.css" rel="stylesheet"/>
+    <link href="./resource/css/main.css" rel="stylesheet"/>
 
-    <link href="resource/css/custom.css" rel="stylesheet"/>
+    <link href="./resource/css/custom.css" rel="stylesheet"/>
 
-    <link href="resource/css/cal.css" rel="stylesheet"/>
+    <link href="./resource/css/cal.css" rel="stylesheet"/>
+
+    <!--Script -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="./resource/vendor/jquery/jquery.min.js"></script>
+    <script src="./resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="./resource/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="./resource/vendor/chart.js/Chart.min.js"></script>
+    <script src="./resource/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="./resource/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="./resource/js/main.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"
+    ></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="./resource/js/demo/datatables-demo.js"></script>
+    <script src="./resource/js/demo/chart-area-demo.js"></script>
+    <script src="./resource/js/demo/chart-bar-new.js"></script>
+    <script src="./resource/js/demo/cal.js"></script>
 </head>
 
 <body id="page-top">
-
-<!-- Bootstrap core JavaScript-->
-<script src="resource/vendor/jquery/jquery.min.js"></script>
-<script src="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="resource/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Page level plugin JavaScript-->
-<script src="resource/vendor/chart.js/Chart.min.js"></script>
-<script src="resource/vendor/datatables/jquery.dataTables.js"></script>
-<script src="resource/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="resource/js/main.min.js"></script>
-
-<!-- MDB core JavaScript -->
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"
-></script>
-
-<!-- Demo scripts for this page-->
-<script src="resource/js/demo/datatables-demo.js"></script>
-<script src="resource/js/demo/chart-area-demo.js"></script>
-<script src="resource/js/demo/chart-bar-new.js"></script>
-<script src="resource/js/demo/cal.js"></script>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="index.php">Woofs&Paws</a>
