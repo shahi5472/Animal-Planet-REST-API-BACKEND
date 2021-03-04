@@ -99,7 +99,7 @@ if (isset($_GET['id'])) {
             for ($x = 0; $x < count($result); $x++) {
                 ?>
                 <div type="button" data-toggle="modal" data-target="#exampleModal">
-                    <img src="<?php echo $result[$x]['url']; ?>" alt=""/>
+                    <img src="uploads/<?php echo $result[$x]['url']; ?>" alt=""/>
                 </div>
                 <?php
             }

@@ -253,10 +253,10 @@ class  DB_Functions
         return $singlePost;
     }
 
-    function createPost($title, $description, $userId, $created_at, $updated_at)
+    function createPost($title, $description, $animalType, $userId, $created_at, $updated_at)
     {
-        $result = $this->conn->prepare("INSERT INTO `posts`(`title`, `description`, `user_id`,`created_at`, `updated_at`) VALUES (?,?,?,?,?);");
-        $result->bind_param("ssiss", $title, $description, $userId, $created_at, $updated_at);
+        $result = $this->conn->prepare("INSERT INTO `posts`(`title`, `description`, `animal_type`, `user_id`,`created_at`, `updated_at`) VALUES (?,?,?,?,?,?);");
+        $result->bind_param("sssiss", $title, $description, $animalType, $userId, $created_at, $updated_at);
         $result->execute();
         $post = $result->insert_id;
         $result->close();
@@ -265,6 +265,14 @@ class  DB_Functions
         } else {
             return false;
         }
+    }
+
+    function imageInsert($url, $imageSrc, $userId, $created_at, $updated_at)
+    {
+        $result = $this->conn->prepare("INSERT INTO `images`(`url`, `image_src`, `user_id`, `created_at`, `updated_at`) VALUES (?,?,?,?,?);");
+        $result->bind_param("ssiss", $url, $imageSrc, $userId, $created_at, $updated_at);
+        $result->execute();
+        $result->close();
     }
 
     function updateViewCount($lastNumber, $id)

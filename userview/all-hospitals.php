@@ -1,9 +1,17 @@
+<?php
+
+include '../auth/Session.php';
+
+Session::init();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Woofs&Paws</title>
+    <title>All Hospitals | Animal Planet</title>
 
     <link
             rel="stylesheet"
@@ -72,15 +80,22 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-default my-2 my-sm-0 px-4 primary-button">
-                        Login
-                    </button>
+                    <?php
+                    if (Session::get('name')) {
+                        ?>
+                        <a href="profile.php"
+                           class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button"><?php echo Session::get('name'); ?>
+                        </a>
+                        <?php
+                    } else { ?>
+                        <a href="login.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button">Login</a>
+                    <?php } ?>
                 </form>
             </div>
         </nav>
     </div>
     <div class="title-section">
-        <h2>find the best hospitals near you</h2>
+        <h2>Find the best hospitals near you</h2>
     </div>
 </div>
 

@@ -1,9 +1,17 @@
+<?php
+
+include '../auth/Session.php';
+
+Session::init();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Woofs&Paws</title>
+    <title>All Questions | Animal Planet</title>
     <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -70,15 +78,22 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-default my-2 my-sm-0 px-4 primary-button">
-                        Login
-                    </button>
+                    <?php
+                    if (Session::get('name')) {
+                        ?>
+                        <a href="profile.php"
+                           class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button"><?php echo Session::get('name'); ?>
+                        </a>
+                        <?php
+                    } else { ?>
+                        <a href="login.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button">Login</a>
+                    <?php } ?>
                 </form>
             </div>
         </nav>
     </div>
     <div class="title-section">
-        <h2>find the relevent question here</h2>
+        <h2>Find the relevant question here</h2>
     </div>
 </div>
 
@@ -88,12 +103,16 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                     <div class="ask-question">
-                        <button
-                                type="button"
-                                class="btn btn-default my-2 my-sm-0 px-5 py-2 mb-4 mt-4 primary-button"
-                        >
-                            Ask a question
-                        </button>
+                        <?php
+                        if (Session::get('name')) {
+                            ?>
+                            <a href="ask-question.php"
+                               class="btn btn-default my-2 my-sm-0 px-5 py-2 mb-4 mt-4 primary-button">Ask a question
+                            </a>
+                            <?php
+                        } else { ?>
+                            <a href="login.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button">Login</a>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
