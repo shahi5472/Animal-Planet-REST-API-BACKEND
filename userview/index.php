@@ -4,11 +4,6 @@ include '../auth/Session.php';
 
 Session::init();
 
-if (Session::get("id") == false) {
-    header("Location:login.php");
-    exit();
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -208,9 +203,7 @@ if (Session::get("id") == false) {
                         Consequuntur expedita assumenda corporis, maxime neque fuga?
                     </p>
                     <button
-                            class="btn btn-default my-2 my-sm-0 px-5 py-2 need-help-button"
-                    >
-                        Ask question
+                            class="btn btn-default my-2 my-sm-0 px-5 py-2 need-help-button">Ask question
                     </button>
                 </div>
             </div>
@@ -222,9 +215,7 @@ if (Session::get("id") == false) {
                         Consequuntur expedita assumenda corporis, maxime neque fuga?
                     </p>
                     <button
-                            class="btn btn-default my-2 my-sm-0 px-5 py-2 need-help-button"
-                    >
-                        Find hospital
+                            class="btn btn-default my-2 my-sm-0 px-5 py-2 need-help-button">Find hospital
                     </button>
                 </div>
             </div>

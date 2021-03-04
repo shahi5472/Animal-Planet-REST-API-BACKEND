@@ -270,14 +270,11 @@ if (Session::get("user_type") != 'admin') {
                 Select "Logout" below if you are ready to end your current session.
             </div>
             <div class="modal-footer">
-                <button
-                        class="btn btn-secondary"
+                <button class="btn btn-secondary"
                         type="button"
-                        data-dismiss="modal"
-                >
-                    Cancel
+                        data-dismiss="modal">Cancel
                 </button>
-                <a class="btn btn-primary" href="../auth/logout.php">Logout</a>
+                <a id="logoutBtn" class="btn btn-primary" href="#">Logout</a>
             </div>
         </div>
     </div>
@@ -351,6 +348,22 @@ if (Session::get("user_type") != 'admin') {
             }
         }
     }
+
+    $(document).ready(function () {
+        $(document).on('click', '#logoutBtn', function () {
+            $.ajax({
+                url: '../auth/logout.php',
+                method: 'post',
+                success: function (response) {
+                    console.log(response);
+                    if (!response.error) {
+                        window.location = 'index.php';
+                    }
+                }
+            });
+        });
+    });
+
 </script>
 
 </body>

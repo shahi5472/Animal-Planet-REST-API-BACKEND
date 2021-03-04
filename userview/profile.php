@@ -119,6 +119,10 @@ if (Session::get("id") == false) {
                     </div>
                 </form>
                 <button id="updateProfileBtn" type="submit" class="btn btn-primary">Save</button>
+                <br>
+                <br>
+                <a id="logoutBtn" class="btn btn-primary" href="#">Logout</a>
+                <br>
             </div>
         </div>
     </div>
@@ -194,6 +198,19 @@ if (Session::get("id") == false) {
                     // if (!response.error) {
                     //     window.location = 'profile.php';
                     // }
+                }
+            });
+        });
+
+        $(document).on('click', '#logoutBtn', function () {
+            $.ajax({
+                url: '../auth/logout.php',
+                method: 'post',
+                success: function (response) {
+                    console.log(response);
+                    if (!response.error) {
+                        window.location = 'index.php';
+                    }
                 }
             });
         });
