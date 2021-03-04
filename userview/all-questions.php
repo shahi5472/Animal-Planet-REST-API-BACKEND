@@ -153,7 +153,7 @@ Session::init();
                 var json = JSON.parse(response);
                 $.each(json, function (key, value) {
                     console.log(value)
-                    $('.showList').append('<div class="single-question"><a href="single-question.php?id=' + value.id + '"><div class="single-question-title"><h4>' + value.title + '?</h4></div><div class="single-question-body"><p>' + value.description + '</p></div><div class="single-question-tags"><p class="single-tag">Cat</p><p class="single-tag">Fever</p></div></a></div>');
+                    $('.showList').append('<div class="single-question"><a href="single-question.php?id=' + value.id + '"><div class="single-question-title"><h4>' + value.title + '?</h4></div><div class="single-question-body"><p>' + value.description + '</p></div><div class="single-question-tags"><p class="single-tag">' + value.animal_type + '</p></div></a></div>');
                 });
             }
         });

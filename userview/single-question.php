@@ -4,13 +4,19 @@ include '../auth/Session.php';
 
 Session::init();
 
+if (isset($_GET['id'])) {
+    $pageId = $_GET['id'];
+    include "../post/PostController.php";
+    $response = PostController::getSinglePostById($pageId);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Woofs&Paws</title>
+    <title><?php echo $response['post']['title']; ?> | Animal Planet</title>
     <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -40,8 +46,7 @@ Session::init();
                     data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02"
                     aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -58,9 +63,16 @@ Session::init();
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-default my-2 my-sm-0 px-4 primary-button">
-                        Login
-                    </button>
+                    <?php
+                    if (Session::get('name')) {
+                        ?>
+                        <a href="profile.php"
+                           class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button"><?php echo Session::get('name'); ?>
+                        </a>
+                        <?php
+                    } else { ?>
+                        <a href="login.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button">Login</a>
+                    <?php } ?>
                 </form>
             </div>
         </nav>
@@ -69,14 +81,6 @@ Session::init();
 </div>
 
 <br>
-<?php
-if (isset($_GET['id'])) {
-    $pageId = $_GET['id'];
-    include "../post/PostController.php";
-    $response = PostController::getSinglePostById($pageId);
-}
-?>
-
 
 <div class="question-post">
     <div class="container">
@@ -133,8 +137,7 @@ if (isset($_GET['id'])) {
                                     <img
                                             class="comment-pro-pic"
                                             src="./resources/images/doc-1.png"
-                                            alt=""
-                                    />
+                                            alt=""/>
                                 </div>
                                 <div class="col-md-11">
                                     <div class="comment-posted">
@@ -151,7 +154,7 @@ if (isset($_GET['id'])) {
                                         <?php echo $result[$x]['message']; ?>
                                     </p>
                                     <?php
-                                    if (!Session::get('id')) {
+                                    if (Session::get('id')) {
                                         ?>
                                         <div class="new-reply">
                                             <form id="form-data" enctype="multipart/form-data" method="post">
@@ -161,21 +164,18 @@ if (isset($_GET['id'])) {
 
                                                     <input id="userId" hidden
                                                            name="userId"
-                                                           value="<?php echo Session::get('id') ?>"
-                                                    >
+                                                           value="<?php echo Session::get('id'); ?>">
 
                                                     <textarea
                                                             class="form-control"
                                                             id="message"
                                                             rows="1"
                                                             placeholder="reply here"
-                                                            name="message"
-
-                                                    ></textarea>
+                                                            name="message"></textarea>
+                                                    <br>
                                                     <button id="replyComment" type="submit" class="btn btn-success">
                                                         Reply
                                                     </button>
-
                                                 </div>
                                             </form>
                                         </div>
@@ -239,7 +239,7 @@ if (isset($_GET['id'])) {
 </div>
 
 <?php
-if (!Session::get('id')) {
+if (Session::get('id')) {
     ?>
     <div class="post-comment">
         <div class="container">
@@ -250,8 +250,7 @@ if (!Session::get('id')) {
 
                 <input id="userId" hidden
                        name="userId"
-                       value="<?php echo Session::get('id') ?>"
-                >
+                       value="<?php echo Session::get('id'); ?>">
 
                 <div class="form-group">
                   <textarea
@@ -261,6 +260,7 @@ if (!Session::get('id')) {
                           name="message"
                           placeholder="reply here"
                   ></textarea>
+                    <br>
                     <button id="postComment" type="submit" class="btn btn-success">Comment</button>
                 </div>
             </form>
@@ -356,6 +356,9 @@ if (!Session::get('id')) {
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"
 ></script>
+
+<script src="./resources/vendor/jquery/jquery.min.js"></script>
+
 <script>
     $("#myModal").on("shown.bs.modal", function () {
         $("#myInput").trigger("focus");
@@ -374,7 +377,7 @@ if (!Session::get('id')) {
                     $("#form-data")[0].reset();
                     // alert(response);
                     console.log(response);
-                    window.location = 'index.php?page=singlePost&id=<?php echo $pageId; ?>';
+                    window.location = 'single-question.php?id=<?php echo $pageId; ?>';
                 }
             });
         });
@@ -388,7 +391,7 @@ if (!Session::get('id')) {
                     $("#comment-data")[0].reset();
                     // alert(response);
                     console.log(response);
-                    window.location = 'index.php?page=singlePost&id=<?php echo $pageId; ?>';
+                    window.location = 'single-question.php?id=<?php echo $pageId; ?>';
                 }
             });
         });
