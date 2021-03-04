@@ -77,36 +77,36 @@ if (Session::get("id") == false) {
                 <div class="profile-img">
                     <img src="./resources/images/doc-2.png" alt=""/>
                 </div>
-                <form>
+                <form id="form-data" enctype="multipart/form-data" method="post">
                     <div class="form-group">
+                        <input hidden name="user_type" value="<?php echo Session::get('user_type') ?>"/>
+                        <input type="hidden" name="id" hidden value="<?php echo Session::get('id') ?>">
                         <label for="exampleInputName">User Name</label>
-                        <input
-                                type="name"
-                                class="form-control"
-                                id="exampleInputName"
-                                value="Name"
+                        <input type="name"
+                               class="form-control"
+                               name="name"
+                               placeholder="User name"
+                               value="<?php echo Session::get('name') == null ? '' : Session::get('name') ?>"
                         />
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail">Email address</label>
-                        <input
-                                type="email"
-                                class="form-control"
-                                id="exampleInputEmail"
-                                aria-describedby="emailHelp"
-                                value="Enter email"
+                        <input type="email"
+                               class="form-control"
+                               name="email"
+                               disabled
+                               value="<?php echo Session::get('email') == null ? '' : Session::get('email') ?>"
                         />
                         <small id="emailHelp" class="form-text text-muted"
                         >We'll never share your email with anyone else.</small
                         >
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputContact">Email address</label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="exampleInputContact"
-                                value="01521******"
+                        <label for="exampleInputContact">Contact</label>
+                        <input name="phone"
+                               type="text"
+                               class="form-control"
+                               value="<?php echo Session::get('phone') == null ? '' : Session::get('phone') ?>"
                         />
                     </div>
                     <div class="form-group">
@@ -114,21 +114,11 @@ if (Session::get("id") == false) {
                         <input
                                 type="file"
                                 class="form-control-file"
-                                id="exampleFormControlFile1"
+                                name="picture"
                         />
                     </div>
-                    <div class="form-check">
-                        <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="exampleCheck1"
-                        />
-                        <label class="form-check-label" for="exampleCheck1"
-                        >Confirm changes</label
-                        >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
+                <button id="updateProfileBtn" type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -190,6 +180,27 @@ if (Session::get("id") == false) {
         $("#myInput").trigger("focus");
     });
 </script>
+
+<script>
+
+    $(document).ready(function () {
+        $(document).on('click', '#updateProfileBtn', function () {
+            $.ajax({
+                url: '../user/updateUser.php',
+                method: 'post',
+                data: $("#form-data").serialize(),
+                success: function (response) {
+                    console.log(response);
+                    // if (!response.error) {
+                    //     window.location = 'profile.php';
+                    // }
+                }
+            });
+        });
+    });
+
+</script>
+
 </body>
 </html>
 

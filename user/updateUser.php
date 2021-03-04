@@ -23,6 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $response['error'] = FALSE;
                 $response['message'] = 'Update successful';
                 $response['user'] = $db->getUser(null, $id);
+                Session::set("name", $response['name']);
+                Session::set("email", $response['email']);
+                Session::set("user_type", $response['user_type']);
+                Session::set("phone", $response['phone']);
+                Session::set("address", $response['address']);
+                Session::set("specialists", $response['specialists']);
             } else {
                 $response['error'] = TRUE;
                 $response['message'] = 'Update failed';
