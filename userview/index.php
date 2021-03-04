@@ -4,6 +4,11 @@ include '../auth/Session.php';
 
 Session::init();
 
+if (Session::get("id") == false) {
+    header("Location:login.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +16,7 @@ Session::init();
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Woofs&Paws</title>
+    <title>Animal Planet</title>
 
     <link
             rel="stylesheet"
@@ -51,15 +56,13 @@ Session::init();
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.php">Animal Planet</a>
-            <button
-                    class="navbar-toggler"
+            <button class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02"
                     aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -76,9 +79,15 @@ Session::init();
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-default my-2 my-sm-0 px-4 primary-button">
-                        Login
-                    </button>
+                    <?php
+                    if (Session::get('name')) {
+                        ?>
+                        <a href="profile.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button"><?php echo Session::get('name'); ?>
+                        </a>
+                        <?php
+                    } else { ?>
+                        <a href="login.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button">Login</a>
+                    <?php } ?>
                 </form>
             </div>
         </nav>
@@ -89,27 +98,28 @@ Session::init();
                 <div class="col-md-5">
                     <div class="header-section-description">
                         <h2 class="header-color">
-                            Find the Best
-                            <span class="highlight-red">Pet Solutions</span> Here.
-                        </h2>
+                            Find the Best<span class="highlight-red">Pet Solutions</span> Here.</h2>
                         <p class="text-color">
                             Volutpat odio facilisis mauris sit amet massa. Commodo odio
                             aenean sed adipiscing diam donec adipiscing tristique.
                         </p>
-                        <button
-                                class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button"
-                        >
-                            Login
-                        </button>
+                        <?php
+                        if (Session::get('name')) {
+                            ?>
+                            <a href="profile.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button"><?php echo Session::get('name'); ?>
+                            </a>
+
+                            <?php
+                        } else { ?>
+                            <a href="login.php" class="btn btn-default my-2 my-sm-0 px-5 py-2 primary-button">Login</a>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="header-section-image">
-                        <img
-                                class="img-fluid"
-                                src="./resources/images/pretty-girl-embarcing-cat-dog 1.png"
-                                alt=""
-                        />
+                        <img class="img-fluid"
+                             src="./resources/images/pretty-girl-embarcing-cat-dog 1.png"
+                             alt=""/>
                     </div>
                 </div>
             </div>
