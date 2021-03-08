@@ -4,9 +4,13 @@ require_once '../controller/db_functions.php';
 
 class PostController extends DB_Functions
 {
-    public static function index()
+    public static function index($value)
     {
-        $posts = self::db()->getAllPost();
+        if ($value == null) {
+            $posts = self::db()->getAllPost();
+        } else {
+            $posts = self::db()->getSearchPost($value);
+        }
 
         for ($i = 0; $i < count($posts); $i++) {
             $response = $posts[$i];

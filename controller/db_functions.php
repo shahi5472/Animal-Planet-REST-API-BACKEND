@@ -208,9 +208,19 @@ class  DB_Functions
     {
         $result = $this->conn->prepare("SELECT * FROM posts");
         $result->execute();
-        $hospitals = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $posts = $result->get_result()->fetch_all(MYSQLI_ASSOC);
         $result->close();
-        return $hospitals;
+        return $posts;
+    }
+
+    function getSearchPost($value)
+    {
+        $result = $this->conn->prepare("SELECT * FROM `posts` WHERE `title` LIKE ?");
+        $result->bind_param("s", $value);
+        $result->execute();
+        $posts = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $posts;
     }
 
     function getImages($image_src, $user_id)

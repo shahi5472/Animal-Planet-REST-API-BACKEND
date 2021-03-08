@@ -46,7 +46,7 @@ Session::init();
     ></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <script src="./resources/vendor/jquery/jquery.min.js"></script>
 </head>
 <body>
 <div class="header">
@@ -118,15 +118,19 @@ Session::init();
                 <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                     <div class="find-question">
                         <div class="input-group">
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Recipient's username"
-                                    aria-label="Recipient's username"
-                                    aria-describedby="basic-addon2"
-                            />
+                            <form id="search-form-data" method="get" class="form-control">
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Search"
+                                        aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2"
+                                        name="searchValue"
+                                        id="searchValue"
+                                />
+                            </form>
                             <div class="input-group-append">
-                                <button class="btn primary-button" type="button">
+                                <button id="searchBtn" class="btn primary-button" type="button">
                                     Search the question
                                 </button>
                             </div>
@@ -136,9 +140,7 @@ Session::init();
             </div>
         </div>
 
-        <div class="question-list showList">
-
-        </div>
+        <div class="question-list showList"></div>
     </div>
 </div>
 
@@ -146,17 +148,37 @@ Session::init();
 <script>
 
     $(document).ready(function () {
-        $.ajax({
-            url: '../post/index.php',
-            method: 'get',
-            success: function (response) {
-                var json = JSON.parse(response);
-                $.each(json, function (key, value) {
-                    console.log(value)
-                    $('.showList').append('<div class="single-question"><a href="single-question.php?id=' + value.id + '"><div class="single-question-title"><h4>' + value.title + '?</h4></div><div class="single-question-body"><p>' + value.description + '</p></div><div class="single-question-tags"><p class="single-tag">' + value.animal_type + '</p></div></a></div>');
-                });
-            }
+        loadData();
+
+        $('#searchBtn').click(function () {
+            $('.showList').empty();
+            $.ajax({
+                url: '../post/index.php',
+                method: 'get',
+                data: $("#search-form-data").serialize(),
+                success: function (response) {
+                    var json = JSON.parse(response);
+                    $.each(json, function (key, value) {
+                        console.log(value)
+                        $('.showList').append('<div class="single-question"><a href="single-question.php?id=' + value.id + '"><div class="single-question-title"><h4>' + value.title + '?</h4></div><div class="single-question-body"><p>' + value.description + '</p></div><div class="single-question-tags"><p class="single-tag">' + value.animal_type + '</p></div></a></div>');
+                    });
+                }
+            });
         });
+
+        function loadData() {
+            $.ajax({
+                url: '../post/index.php',
+                method: 'get',
+                success: function (response) {
+                    var json = JSON.parse(response);
+                    $.each(json, function (key, value) {
+                        // console.log(value)
+                        $('.showList').append('<div class="single-question"><a href="single-question.php?id=' + value.id + '"><div class="single-question-title"><h4>' + value.title + '?</h4></div><div class="single-question-body"><p>' + value.description + '</p></div><div class="single-question-tags"><p class="single-tag">' + value.animal_type + '</p></div></a></div>');
+                    });
+                }
+            });
+        }
     });
 
 </script>

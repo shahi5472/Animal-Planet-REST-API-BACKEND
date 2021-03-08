@@ -6,7 +6,12 @@ $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
-    $response = PostController::index();
+    if (isset($_GET['searchValue'])) {
+        $value = $_GET;
+        $response = PostController::index($value);
+    } else {
+        $response = PostController::index(null);
+    }
 
     echo json_encode($response);
 

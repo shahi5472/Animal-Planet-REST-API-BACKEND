@@ -87,12 +87,12 @@ if (isset($_GET['id'])) {
         <h2 class="question-title"><?php echo $response['post']['title']; ?></h2>
         <div class="question-posted">
             <p class="question-posted-time">
-                <?php echo date_format(date_create($response['post']['created_at']), "H-m-S a"); ?>
+                <?php echo date_format(date_create($response['post']['created_at']), "h:i:s a"); ?>
             </p>
             <p class="question-posted-date">
                 <?php echo date_format(date_create($response['post']['created_at']), "d-M-Y"); ?>
             </p>
-            <p>Posted by -
+            <p class="font-weight-bold">Posted by -
                 <?php echo ucwords($response['post']['user']['name']); ?>
             </p>
         </div>
@@ -142,7 +142,7 @@ if (isset($_GET['id'])) {
                                 <div class="col-md-11">
                                     <div class="comment-posted">
                                         <p class="comment-posted-time">
-                                            <?php echo date_format(date_create($result[$x]['created_at']), "H-m-s a"); ?>
+                                            <?php echo date_format(date_create($result[$x]['created_at']), "h:i:sa"); ?>
                                         </p>
                                         <p class="comment-posted-date">
                                             <?php echo date_format(date_create($result[$x]['created_at']), "d-M-Y"); ?>
@@ -239,7 +239,7 @@ if (isset($_GET['id'])) {
 </div>
 
 <?php
-if (Session::get('id')) {
+if (Session::get('id') != false) {
     ?>
     <div class="post-comment">
         <div class="container">
