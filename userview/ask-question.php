@@ -37,9 +37,7 @@ if (isset($_POST['questionPostBtn'])) {
             $photo = explode(".", $_FILES['photo']['name'][$x]);
             $photo = end($photo);
 
-            if (!empty($photo)) {
-                $photo_name = "IMG_" . rand(10000000000, 9999999999999) . "." . $photo;
-            }
+            $photo_name = "IMG_" . rand(10000000000, 9999999999999) . "." . $photo;
 
             $db->imageInsert($photo_name, 'post', $postId, $created_at, $updated_at);
 
