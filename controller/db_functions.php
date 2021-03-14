@@ -461,7 +461,15 @@ class  DB_Functions
 
     function getDoctors()
     {
-        $query = "SELECT * FROM `users` WHERE `user_type` = 'doctor';";
+//        $query = "SELECT * FROM `users` WHERE `user_type` = 'doctor';";
+        $query = "SELECT
+  users.*,
+  COUNT(posts.doctor_id) AS Total
+FROM
+  users 
+LEFT JOIN posts ON users.id = posts.doctor_id
+WHERE users.user_type = 'doctor'
+GROUP BY users.id,users.name ORDER BY Total DESC;";
         $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
         return $result;
     }
