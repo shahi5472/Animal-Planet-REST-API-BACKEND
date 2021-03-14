@@ -33,6 +33,8 @@ class Session
         unset($_SESSION["phone"]);
         unset($_SESSION["address"]);
         unset($_SESSION["specialists"]);
+        unset($_SESSION["image"]);
         header("Location:login.php");
     }
+
 }

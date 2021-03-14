@@ -75,11 +75,10 @@ if (Session::get("id") == false) {
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-img">
-                    <img src="./resources/images/doc-2.png" alt=""/>
+                    <img src="uploads/<?php echo Session::get('image'); ?>" alt=""/>
                 </div>
                 <form id="form-data" enctype="multipart/form-data" method="post">
                     <div class="form-group">
-                        <input hidden name="user_type" value="<?php echo Session::get('user_type') ?>"/>
                         <input type="hidden" name="id" hidden value="<?php echo Session::get('id') ?>">
                         <label for="exampleInputName">User Name</label>
                         <input type="name"
@@ -110,16 +109,24 @@ if (Session::get("id") == false) {
                         />
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Change picture</label>
-                        <input
-                                type="file"
-                                class="form-control-file"
-                                name="picture"
+                        <label for="exampleInputName">Address</label>
+                        <input type="address"
+                               class="form-control"
+                               name="address"
+                               placeholder="Address"
+                               value="<?php echo Session::get('address') == null ? '' : Session::get('address') ?>"
                         />
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Change picture</label>
+                        <input
+                                type="file" id="file" name="file"
+                                class="form-control-file"
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <br>
                 </form>
-                <button id="updateProfileBtn" type="submit" class="btn btn-primary">Save</button>
-                <br>
                 <br>
                 <a id="logoutBtn" class="btn btn-primary" href="#">Logout</a>
                 <br>
@@ -188,16 +195,18 @@ if (Session::get("id") == false) {
 <script>
 
     $(document).ready(function () {
-        $(document).on('click', '#updateProfileBtn', function () {
+        $("#form-data").on("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
             $.ajax({
-                url: '../user/updateUser.php',
-                method: 'post',
-                data: $("#form-data").serialize(),
+                url: "../user/updateUser.php",
+                type: "POST",
+                cache: false,
+                data: formData,
+                contentType: false,
+                processData: false,
                 success: function (response) {
                     console.log(response);
-                    // if (!response.error) {
-                    //     window.location = 'profile.php';
-                    // }
                 }
             });
         });

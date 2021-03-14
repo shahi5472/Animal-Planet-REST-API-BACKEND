@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 Session::set("phone", $userData['phone']);
                 Session::set("address", $userData['address']);
                 Session::set("specialists", $userData['specialists']);
+                Session::set("image", $db->getImages('user', $userData['id'])[0]['url']);
             } else {
                 $response['error'] = TRUE;
                 $response['message'] = 'Password incorrect';

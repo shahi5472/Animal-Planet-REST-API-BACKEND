@@ -83,10 +83,13 @@ class  DB_Functions
         return $user;
     }
 
-    function updateUser($id, $name, $email, $user_type, $phone, $address, $specialists, $updated_at)
+//    function updateUser($id, $name, $user_type, $phone, $address, $specialists, $updated_at)
+    function updateUser($id, $name, $phone, $address, $updated_at)
     {
-        $result = $this->conn->prepare("UPDATE users SET name=?, email =?, user_type =?, phone =?, address =?, specialists =?, updated_at=? WHERE id = ?");
-        $result->bind_param("sssssssi", $name, $email, $user_type, $phone, $address, $specialists, $updated_at, $id);
+        $result = $this->conn->prepare("UPDATE `users` SET `name`=?, `phone`=?,`address`=?, `updated_at`=? WHERE `id` = ?;");
+        //$result = $this->conn->prepare("UPDATE users SET name=?, user_type =?, phone =?, address =?, specialists =?, updated_at=? WHERE id = ?");
+//        $result->bind_param("ssssssi", $name, $user_type, $phone, $address, $specialists, $updated_at, $id);
+        $result->bind_param("ssssi", $name, $phone, $address, $updated_at, $id);
         $user = $result->execute();
         $result->close();
         if ($user) {
