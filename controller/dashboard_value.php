@@ -22,7 +22,7 @@ class DashboardValue extends DB_Functions
 
     public static function getNewPost()
     {
-        return PostController::index();
+        return PostController::index(null);
     }
 
     public static function getAllDoctor()
@@ -38,5 +38,10 @@ class DashboardValue extends DB_Functions
     public static function getDoctorImage($id)
     {
         return self::db()->getImages('doctor', $id)[0]['url'];
+    }
+
+    public static function getSingleDoctorDetails($id)
+    {
+        return self::db()->getDoctorDetails($id);
     }
 }

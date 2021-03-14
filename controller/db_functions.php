@@ -462,6 +462,23 @@ class  DB_Functions
         return $result->num_rows;
     }
 
+    function getDoctorDetails($id)
+    {
+        $result = $this->conn->prepare("SELECT
+  users.*,
+  COUNT(posts.doctor_id) AS Total
+FROM
+  users 
+LEFT JOIN posts ON users.id = posts.doctor_id
+WHERE users.user_type = 'doctor' AND users.id = ?
+GROUP BY users.id,users.name ORDER BY Total DESC;");
+        $result->bind_param("i", $id);
+        $result->execute();
+        $doctor = $result->get_result()->fetch_assoc();
+        $result->close();
+        return $doctor;
+    }
+
     function getDoctors()
     {
 //        $query = "SELECT * FROM `users` WHERE `user_type` = 'doctor';";

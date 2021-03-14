@@ -417,3 +417,17 @@ a {
 .profile-img img {
     width: 100px;
 }
+
+.single-doctor-card {
+    text-align: center;
+    margin: 20px 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 50px 0;
+    /* overflow-x: hidden; */
+}
+
+.doctor-card a{
+    text-decoration: none;
+    color: black;
+}
