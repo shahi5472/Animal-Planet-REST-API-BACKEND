@@ -104,11 +104,42 @@ Session::init();
             while ($item = mysqli_fetch_assoc($result)) {
                 ?>
                 <div class="col-md-4">
-                    <div class="doctor-card">
-                        <div class="doc-img"><img src="./resources/images/doc-2.png" alt=""/></div>
-                        <h4 class="doc-name"><?php echo $item['name']; ?></h4>
-                        <p class="doc-description"><?php echo $item['email']; ?> <br> <?php echo $item['address']; ?>
-                            , <?php echo $item['specialists']; ?></p>
+                    <div class="doctor-card <?php
+                    if ($item['Total'] == 5 || $item['Total'] == 6) {
+                        echo 'gold-doc';
+                    } elseif ($item['Total'] == 3 || $item['Total'] == 4) {
+                        echo 'silver-doc';
+                    } elseif ($item['Total'] == 1 || $item['Total'] == 2) {
+                        echo 'bronze-doc';
+                    }
+                    ?> ">
+                        <div class="doctor-badge">
+                            <img class="bedge"
+                                 src="./resources/images/gold.png"
+                                 alt="">
+                            <p><?php
+                                if ($item['Total'] == 5 || $item['Total'] == 6) {
+                                    echo 'Gold';
+                                } elseif ($item['Total'] == 3 || $item['Total'] == 4) {
+                                    echo 'Silver';
+                                } elseif ($item['Total'] == 1 || $item['Total'] == 2) {
+                                    echo 'Bronze';
+                                }
+                                ?> Bedge Awwarded</p>
+                        </div>
+                        <div class="doc-img">
+                            <img src="<?php echo DashboardValue::getDoctorImage($item['id']) == null ? 'resources/images/doc-1.png' : 'uploads/' . DashboardValue::getDoctorImage($item['id']); ?>"
+                                 alt=""/>
+                        </div>
+                        <h4 class="doc-name"><?php echo ucwords($item['name']); ?></h4>
+
+                        <p class="doc-description">
+                            <?php echo $item['email']; ?>
+                            <br>
+                            <?php echo $item['address']; ?>
+                            <br>
+                            <?php echo $item['specialists']; ?>
+                        </p>
                     </div>
                 </div>
                 <?php

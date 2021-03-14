@@ -34,4 +34,9 @@ class DashboardValue extends DB_Functions
     {
         return self::db()->getAllHospital();
     }
+
+    public static function getDoctorImage($id)
+    {
+        return self::db()->getImages('doctor', $id)[0]['url'];
+    }
 }

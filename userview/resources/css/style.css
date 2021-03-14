@@ -205,10 +205,16 @@ a {
 /* all doctors */
 .doctor-card {
     text-align: center;
-    height: 400px;
+    height: 450px;
     margin: 20px 0;
     border: 1px solid gray;
     border-radius: 5px;
+    overflow: scroll;
+    /* overflow-x: hidden; */
+}
+
+.doctor-card::-webkit-scrollbar {
+    display: none;
 }
 
 .doctor-card:hover {
@@ -221,12 +227,37 @@ a {
 
 .doc-img img {
     width: 50%;
-    padding: 20px;
-    /* height: 430px; */
+    padding: 15px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.doctor-badge {
+    padding: 20px 0 0;
+}
+
+.bedge {
+    /* font-size: 1em; */
+    width: 40px;
 }
 
 .doc-description {
-    padding: 10px 0;
+    padding: 10px;
+}
+
+.gold-doc {
+    border: 1px solid rgb(207, 204, 0);
+    background-color: rgb(255, 253, 104);
+}
+
+.silver-doc {
+    border: 1px solid rgb(160 160 160);
+    background-color: rgb(228 228 228);
+}
+
+.bronze-doc {
+    border: 1px solid rgb(255 127 0);
+    background-color: rgb(255 200 145);
 }
 
 /* all question */
