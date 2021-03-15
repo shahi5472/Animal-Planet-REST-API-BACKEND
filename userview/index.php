@@ -4,6 +4,12 @@ include '../auth/Session.php';
 
 Session::init();
 
+if (Session::get("user_type") == 'admin') {
+    Session::destroy();
+    header("Location:index.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>

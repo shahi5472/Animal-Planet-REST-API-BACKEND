@@ -9,7 +9,11 @@ if (isset($_GET['id'])) {
     include "../post/PostController.php";
     $response = PostController::getSinglePostById($pageId);
 }
-
+if (Session::get("user_type") == 'admin') {
+    Session::destroy();
+    header("Location:index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,7 +109,8 @@ if (isset($_GET['id'])) {
             $result = $response['post']['images'];
             for ($x = 0; $x < count($result); $x++) {
                 ?>
-                <div id="showImageBtn" data-id="<?php echo $x; ?>" type="button" data-toggle="modal" data-target="#exampleModal">
+                <div id="showImageBtn" data-id="<?php echo $x; ?>" type="button" data-toggle="modal"
+                     data-target="#exampleModal">
                     <img src="uploads/<?php echo $result[$x]['url']; ?>" alt="<?php echo $result[$x]['url']; ?>"
                          id="getImageUrl<?php echo $x; ?>"
                     />

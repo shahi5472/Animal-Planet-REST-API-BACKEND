@@ -15,6 +15,12 @@ if (Session::get("id") == false) {
     exit();
 }
 
+if (Session::get("user_type") == 'admin') {
+    Session::destroy();
+    header("Location:index.php");
+    exit();
+}
+
 if (isset($_POST['questionPostBtn'])) {
 
     $title = $_POST['title'];

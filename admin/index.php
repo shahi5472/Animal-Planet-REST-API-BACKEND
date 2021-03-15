@@ -9,7 +9,7 @@ if (Session::get("id") == false) {
     exit();
 }
 
-if (Session::get("user_type") != 'admin') {
+if (Session::get("user_type") == 'user') {
     Session::destroy();
     header("Location:login.php");
     exit();

@@ -8,6 +8,11 @@ if (Session::get("id") == false) {
     header("Location:login.php");
     exit();
 }
+if (Session::get("user_type") == 'admin') {
+    Session::destroy();
+    header("Location:index.php");
+    exit();
+}
 
 ?>
 <!DOCTYPE html>
