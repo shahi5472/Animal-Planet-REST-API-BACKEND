@@ -131,6 +131,15 @@ class  DB_Functions
         return $hospitals;
     }
 
+    function getAllPharmacy()
+    {
+        $result = $this->conn->prepare("SELECT * FROM pharmacys");
+        $result->execute();
+        $pharmacy = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result->close();
+        return $pharmacy;
+    }
+
     function getHospitalById($id)
     {
         $result = $this->conn->prepare("SELECT * FROM `hospitals` WHERE id=?");

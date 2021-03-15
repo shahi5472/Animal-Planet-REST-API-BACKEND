@@ -1,17 +1,18 @@
 <?php
 
-include "../controller/dashboard_value.php";
 include '../auth/Session.php';
 
 Session::init();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>All Doctors | Animal Planet</title>
+    <title>All Pharmacies | Animal Planet</title>
+
     <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -44,10 +45,12 @@ Session::init();
             crossorigin="anonymous"
     ></script>
 
+    <!-- Bootstrap core JavaScript-->
     <script src="./resources/vendor/jquery/jquery.min.js"></script>
 
 </head>
 <body>
+
 <div class="header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -95,72 +98,42 @@ Session::init();
         </nav>
     </div>
     <div class="title-section">
-        <h2>Find the best doctors near you</h2>
+        <h2>Find the best pharmacy near you</h2>
     </div>
 </div>
 
-<div class="all-doctors">
+
+<div class="all-hospitals">
     <div class="container">
-        <div class="row">
-            <?php
-            $result = DashboardValue::getAllDoctor();
-            while ($item = mysqli_fetch_assoc($result)) {
-                ?>
-                <div class="col-md-4">
-                    <div class="doctor-card <?php
-                    if ($item['Total'] == 5 || $item['Total'] == 6) {
-                        echo 'gold-doc';
-                    } elseif ($item['Total'] == 3 || $item['Total'] == 4) {
-                        echo 'silver-doc';
-                    } elseif ($item['Total'] == 1 || $item['Total'] == 2) {
-                        echo 'bronze-doc';
-                    }
-                    ?> ">
-                        <a style="text-decoration: none;" href="doctor-details.php?id=<?php echo $item['id']; ?>">
-                        <div class="doctor-badge">
-                            <img class="bedge"
-                                 src="<?php
-                                 if ($item['Total'] == 5 || $item['Total'] == 6) {
-                                     echo './resources/images/gold.png';
-                                 } elseif ($item['Total'] == 3 || $item['Total'] == 4) {
-                                     echo './resources/images/silver.png';
-                                 } elseif ($item['Total'] == 1 || $item['Total'] == 2) {
-                                     echo './resources/images/bronze.png';
-                                 }
-                                 ?>"
-                                 alt="">
-                            <p><?php
-                                if ($item['Total'] == 5 || $item['Total'] == 6) {
-                                    echo 'Gold';
-                                } elseif ($item['Total'] == 3 || $item['Total'] == 4) {
-                                    echo 'Silver';
-                                } elseif ($item['Total'] == 1 || $item['Total'] == 2) {
-                                    echo 'Bronze';
-                                }
-                                ?> Bedge Awwarded</p>
-                        </div>
-                        <div class="doc-img">
-                            <img src="<?php echo DashboardValue::getDoctorImage($item['id']) == null ? 'resources/images/doc-1.png' : 'uploads/' . DashboardValue::getDoctorImage($item['id']); ?>"
-                                 alt=""/>
-                        </div>
-                        <h4 class="doc-name"><?php echo ucwords($item['name']); ?></h4>
-
-                        <p class="doc-description">
-                            <?php echo $item['email']; ?>
-                            <br>
-                            <?php echo $item['address']; ?>
-                            <br>
-                            <?php echo $item['specialists']; ?>
-                        </p>
-                        </a>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
-        </div>
+        <div class="row showList"></div>
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: '../pharmacy/index.php',
+            method: 'get',
+            success: function (response) {
+                var json = JSON.parse(response);
+                $.each(json.pharmacies, function (key, value) {
+                    $('.showList').append('<div class="col-md-4">' +
+                        '<div class="hospital-card">' +
+                        '<div class="hospital-img">' +
+                        '<img src="./resources/images/pet-hospital-2.jpg" alt=""/></div>' +
+                        '<h4 class="doc-name">' + value.name + '</h4>' +
+                        '<p class="hospital-description">' +
+                        '' + value.contact +
+                        '<br>' + value.address + '</p>' +
+                        '</div></div>');
+                });
+            }
+        });
+    });
+
+</script>
 
 <footer>
     <div class="section footer-section">

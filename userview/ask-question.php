@@ -104,6 +104,9 @@ if (isset($_POST['questionPostBtn'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="all-hospitals.php">Hospitals</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="all-pharmacy.php">All Pharmacy</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <?php
