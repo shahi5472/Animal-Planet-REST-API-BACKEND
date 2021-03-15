@@ -73,7 +73,6 @@
                                     <label for="email">Upload doctor Photo </label>
                                     <input
                                             type="file" id="file" name="file"
-                                            onchange="previewImage(this,'View_area')"
                                     />
                                     <div
                                             id="View_area"
@@ -100,15 +99,15 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <button style="margin-right: 10px; margin-left: 20px" type="submit" id="create" class="btn btn-success btn-lg">
+                            Create
+                        </button>
+                        <button type="button" id="reset" class="btn btn-danger btn-lg">
+                            Reset
+                        </button>
+                    </div>
                 </form>
-                <button type="button" id="create" class="btn btn-success btn-lg">
-                    Create
-                </button>
-
-                <button type="button" id="reset" class="btn btn-danger btn-lg">
-                    Reset
-                </button>
             </div>
         </div>
     </div>
@@ -118,21 +117,37 @@
 <script>
 
     $(document).ready(function () {
-        $(document).on('click', '#create', function () {
+        // $(document).on('click', '#create', function () {
+        //     $.ajax({
+        //         url: '../user/createDoctor.php',
+        //         method: 'post',
+        //         data: $("#form-data").serialize(),
+        //         success: function (response) {
+        //             $("#form-data")[0].reset();
+        //             // alert(response);
+        //             console.log(response);
+        //         }
+        //     });
+        // });
+        $("#form-data").on("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
             $.ajax({
-                url: '../user/createDoctor.php',
-                method: 'post',
-                data: $("#form-data").serialize(),
+                url: "../user/createDoctor.php",
+                type: "POST",
+                cache: false,
+                data: formData,
+                contentType: false,
+                processData: false,
                 success: function (response) {
-                    $("#form-data")[0].reset();
-                    // alert(response);
                     console.log(response);
+                    window.location = 'index.php?page=addDoctor';
                 }
             });
         });
 
         $(document).on('click', '#reset', function () {
-            $("#form-data")[0].reset();
+            window.location = 'index.php?page=addDoctor';
         })
     });
 

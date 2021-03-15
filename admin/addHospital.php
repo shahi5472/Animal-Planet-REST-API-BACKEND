@@ -59,15 +59,7 @@
                                     <label for="email">Upload Hospital Photo </label>
                                     <input
                                             type="file" id="file" name="file"
-                                            onchange="previewImage(this,'View_area')"
                                     />
-                                    <div id="View_area"
-                                         style="position: relative;
-                            width: 100px;
-                            height: 100px;
-                            color: black;
-                            border: 0px solid black;
-                            dispaly: inline;"></div>
                                 </div>
                             </div>
                         </div>

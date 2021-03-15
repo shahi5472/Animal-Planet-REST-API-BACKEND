@@ -22,6 +22,7 @@ include "../controller/dashboard_value.php";
                     <thead class="text-center">
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Contact</th>
@@ -40,6 +41,19 @@ include "../controller/dashboard_value.php";
                         ?>
                         <tr>
                             <th><?php echo $x; ?></th>
+                            <td><img height="80" width="100"
+                                    <?php
+                                    $image = DashboardValue::getDoctorImage($item['id']);
+                                    if ($image == null) {
+                                        ?>
+                                        src="./resource/img/doc-1.png"
+                                    <?php
+                                    } else {
+                                        ?>
+                                        src="../userview/uploads/<?php echo DashboardValue::getDoctorImage($item['id']); ?>"
+                                    <?php
+                                    } ?>
+                                     alt=""/></td>
                             <td><?php echo $item['name']; ?></td>
                             <td><?php echo $item['email']; ?></td>
                             <td><?php echo $item['phone']; ?></td>
@@ -47,8 +61,8 @@ include "../controller/dashboard_value.php";
                             <td><?php echo $item['specialists']; ?></td>
                             <td><?php echo date_format(date_create($item['created_at']), "d-M-Y H:m:s"); ?></td>
                             <td>
-                                <a href="#"><i class="far fa-eye eye"></i></a>&nbsp;
-                                <a href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp;
+                                <a hidden href="#"><i class="far fa-eye eye"></i></a>&nbsp;
+                                <a hidden href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp;
                                 <a id="deleteDoctor" data-id="<?php echo $item['id']; ?>" href="#"> <i
                                             class="fas fa-times delete"></i></a>&nbsp;
                             </td>
@@ -65,7 +79,7 @@ include "../controller/dashboard_value.php";
     <div class="row">
         <div class="col-md-12">
             <div class="footer">
-                <p>&copy; <a href="#">Woofs&Paws </a> | 2021</p>
+                <p>&copy; <a href="#">Animal Planet </a> | 2021</p>
                 <p>
                     Contact information:
                     <a href="mailto:someone@example.com">someone@example.com</a>.

@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="footer">
-                <p>&copy; <a href="#">Woofs&Paws </a> | 2021</p>
+                <p>&copy; <a href="#">Animal Planet </a> | 2021</p>
                 <p>
                     Contact information:
                     <a href="mailto:someone@example.com">someone@example.com</a>.
