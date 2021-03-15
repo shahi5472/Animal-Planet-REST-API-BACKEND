@@ -17,11 +17,11 @@
                     <thead class="text-center">
                     <tr>
                         <th scope="col">Post Id</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Post Title</th>
+                        <th scope="col">Post by</th>
                         <th scope="col">Contact</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Create Time & Date</th>
+                        <th scope="col">Date</th>
                         <th scope="col">is Answered</th>
                         <th scope="col">Edit</th>
                     </tr>
@@ -55,24 +55,24 @@
         function loadData() {
             $.ajax({
                 url: '../post/index.php',
-                method: 'get',
+                method: 'post',
                 success: function (response) {
                     var json = JSON.parse(response);
                     var x = 0;
                     $.each(json, function (key, value) {
-                        console.log(value)
+                        // console.log(value)
                         x++;
                         $('.showList').append('<tr><th>' +
                             '' + x + '' +
-                            '</th><td>' + value.user.name + '' +
-                            '</td><td>' + value.user.email + '' +
+                            '</th><td>' + value.title + '' +
+                            '</td><td>' + value.user.name + '' +
                             '</td><td>' + value.user.phone + '' +
-                            '</td><td>' + value.user.address + '' +
-                            '</td><td>' + (value.created_at == null ? '' : value.created_at) + '' +
+                            '</td><td>' + (value.user.address == null ? 'Not found' : value.user.address) + '' +
+                            '</td><td>' + (value.created_at == null ? '' : formatDate(value.created_at)) + '' +
                             '</td><td>' + (value.is_answered != 0 ? 'Yes' : 'No') + '' +
                             '</td><td>' +
                             '<a id="showPost" data-id="' + value.id + '" href="#"><i class="far fa-eye eye"></i></a>&nbsp' +
-                            '<a id="reload" data-id="' + value.id + '" href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp' +
+                            '<a hidden id="reload" data-id="' + value.id + '" href="#"><i class="fas fa-sync-alt refresh"></i></a>&nbsp' +
                             '<a id="deletePost" data-id="' + value.id + '" href="#"><i class="fas fa-times delete"></i></a>&nbsp' +
                             '</td></tr>');
                     });
@@ -80,9 +80,21 @@
             });
         }
 
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [day, month, year].join('-');
+        }
+
         $(document).on('click', '#showPost', function () {
             var id = $(this).data('id');
-            alert("Id " + id)
+            window.location = 'index.php?page=singlePost&id=' + id;
         });
 
         $(document).on('click', '#deletePost', function () {
