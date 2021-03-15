@@ -29,7 +29,7 @@ if (Session::get("user_type") != 'admin') {
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Woofs&Paws - Dashboard</title>
+    <title>Admin Dashboard || Animal Planet</title>
 
     <!-- Bootstrap core CSS-->
     <link
@@ -84,12 +84,13 @@ if (Session::get("user_type") != 'admin') {
     <script src="./resource/js/demo/chart-area-demo.js"></script>
     <script src="./resource/js/demo/chart-bar-new.js"></script>
     <script src="./resource/js/demo/cal.js"></script>
+<!--    <script src="./resource/vendor/jquery/jquery.min.js"></script>-->
 </head>
 
 <body id="page-top">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-    <a class="navbar-brand mr-1" href="index.php">Woofs&Paws</a>
+    <a class="navbar-brand mr-1" href="index.php">Animal Planet</a>
 
     <button
             style="margin-left 5% !important "
@@ -108,14 +109,14 @@ if (Session::get("user_type") != 'admin') {
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
-            <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="alertsDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+            <a hidden
+               class="nav-link dropdown-toggle"
+               href="#"
+               id="alertsDropdown"
+               role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false"
             >
                 <span class="badge badge-danger">9+</span>
                 <i class="fas fa-bell fa-fw"></i>
@@ -209,6 +210,20 @@ if (Session::get("user_type") != 'admin') {
             <a class="nav-link" href="index.php?page=addHospital">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Add Hospital</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?page=allPharmacy">
+                <i class="fas fa-fw fa-table"></i>
+                <span>All Pharmacy</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?page=addPharmacy">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Add Pharmacy</span>
             </a>
         </li>
 

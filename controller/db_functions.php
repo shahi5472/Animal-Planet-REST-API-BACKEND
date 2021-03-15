@@ -133,7 +133,10 @@ class  DB_Functions
 
     function getAllPharmacy()
     {
-        $result = $this->conn->prepare("SELECT * FROM pharmacys");
+        $result = $this->conn->prepare("SELECT pharmacys.*, images.url as URL
+FROM pharmacys
+INNER JOIN images ON pharmacys.id=images.user_id
+WHERE images.image_src = 'pharmacy';");
         $result->execute();
         $pharmacy = $result->get_result()->fetch_all(MYSQLI_ASSOC);
         $result->close();
@@ -165,6 +168,21 @@ class  DB_Functions
         }
     }
 
+    function checkPharmacy($id)
+    {
+        $result = $this->conn->prepare("SELECT * FROM `pharmacys` WHERE id = ? LIMIT 1");
+        $result->bind_param("i", $id);//1s means 1value send, 2s means 2value send;
+        $result->execute();
+        $result->store_result();
+        if ($result->num_rows > 0) {
+            $result->close();
+            return true;
+        } else {
+            $result->close();
+            return false;
+        }
+    }
+
     function createHospital($name, $address, $contact, $created_at, $updated_at)
     {
         $result = $this->conn->prepare("INSERT INTO `hospitals`(`name`, `address`, `contact`, `created_at`, `updated_at`) VALUES (?,?,?,?,?)");
@@ -177,6 +195,22 @@ class  DB_Functions
             return false;
         }
     }
+
+    function createPharmacy($name, $address, $contact, $created_at, $updated_at)
+    {
+        $result = $this->conn->prepare("INSERT INTO `pharmacys`(`name`, `address`, `contact`, `created_at`, `updated_at`) VALUES (?,?,?,?,?)");
+        $result->bind_param("sssss", $name, $address, $contact, $created_at, $updated_at);
+        $result->execute();
+        $pharmacy = $result->insert_id;
+        $result->close();
+        if ($pharmacy) {
+            return $pharmacy;
+        } else {
+            return false;
+        }
+    }
+
+
 
     function updateHospital($id, $name, $address, $contact, $updated_at)
     {
@@ -194,6 +228,19 @@ class  DB_Functions
     function deleteHospital($id)
     {
         $result = $this->conn->prepare("DELETE FROM `hospitals` WHERE id =?");
+        $result->bind_param("i", $id);
+        $hospital = $result->execute();
+        $result->close();
+        if ($hospital) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deletePharmacy($id)
+    {
+        $result = $this->conn->prepare("DELETE FROM `pharmacys` WHERE id =?");
         $result->bind_param("i", $id);
         $hospital = $result->execute();
         $result->close();

@@ -131,13 +131,13 @@ Session::init();
                                  alt="">
                             <p><?php
                                 if ($item['Total'] == 5 || $item['Total'] == 6) {
-                                    echo 'Gold';
+                                    echo 'Gold Bedge Awwarded';
                                 } elseif ($item['Total'] == 3 || $item['Total'] == 4) {
-                                    echo 'Silver';
+                                    echo 'Silver Bedge Awwarded';
                                 } elseif ($item['Total'] == 1 || $item['Total'] == 2) {
-                                    echo 'Bronze';
+                                    echo 'Bronze Bedge Awwarded';
                                 }
-                                ?> Bedge Awwarded</p>
+                                ?></p>
                         </div>
                         <div class="doc-img">
                             <img src="<?php echo DashboardValue::getDoctorImage($item['id']) == null ? 'resources/images/doc-1.png' : 'uploads/' . DashboardValue::getDoctorImage($item['id']); ?>"

@@ -8,14 +8,14 @@
         <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Add Hospital</li>
+        <li class="breadcrumb-item active">Add Pharmacy</li>
     </ol>
 
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <div class="addAdmitForm">
                 <div class="addAdmitForm-header-One">
-                    <h2>Add Hospital Form</h2>
+                    <h2>Add Pharmacy Form</h2>
                 </div>
                 <hr/>
                 <form id="form-data" enctype="multipart/form-data" method="post">
@@ -25,10 +25,10 @@
                                 <div class="form-group">
                                     <label for="name">Name:</label>
                                     <input
-                                            type="text"
-                                            class="form-control"
-                                            id="name"
-                                            name="name"
+                                        type="text"
+                                        class="form-control"
+                                        id="name"
+                                        name="name"
                                     />
                                 </div>
                             </div>
@@ -36,10 +36,10 @@
                                 <div class="form-group">
                                     <label for="contact">Contact</label>
                                     <input
-                                            type="text"
-                                            class="form-control"
-                                            id="contact"
-                                            name="contact"
+                                        type="text"
+                                        class="form-control"
+                                        id="contact"
+                                        name="contact"
                                     />
                                 </div>
                             </div>
@@ -47,21 +47,19 @@
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <input
-                                            type="text"
-                                            class="form-control"
-                                            id="address"
-                                            name="address"
+                                        type="text"
+                                        class="form-control"
+                                        id="address"
+                                        name="address"
                                     />
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="email">Upload Hospital Photo </label>
+                                    <label for="email">Upload Pharmacy Photo </label>
                                     <input
-                                            type="file"
-                                            name="profile_pt"
-                                            id="profile_pt"
-                                            onchange="previewImage(this,'View_area')"
+                                        type="file" id="file" name="file"
+                                        onchange="previewImage(this,'View_area')"
                                     />
                                     <div id="View_area"
                                          style="position: relative;
@@ -69,20 +67,25 @@
                             height: 100px;
                             color: black;
                             border: 0px solid black;
-                            dispaly: inline;"></div>
+                            display: inline;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div style="margin-left: 10px;"></div>
+                        <button type="submit" class="btn btn-success btn-lg">
+                            Create
+                        </button>
+                        <div style="margin-left: 20px;"></div>
+                        <button id="clear_pharmact" type="button" class="btn btn-danger btn-lg">
+                            Reset
+                        </button>
+                    </div>
                 </form>
 
-                <button id="create_hospital" type="button" class="btn btn-success btn-lg">
-                    Create
-                </button>
 
-                <button id="clear_hospital" type="button" class="btn btn-danger btn-lg">
-                    Reset
-                </button>
             </div>
         </div>
     </div>
@@ -91,20 +94,36 @@
 <script>
 
     $(document).ready(function () {
-        $(document).on('click', '#create_hospital', function () {
+        $("#form-data").on("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
             $.ajax({
-                url: '../hospital/create.php',
-                method: 'post',
-                data: $("#form-data").serialize(),
+                url: "../pharmacy/create.php",
+                type: "POST",
+                cache: false,
+                data: formData,
+                contentType: false,
+                processData: false,
                 success: function (response) {
-                    $("#form-data")[0].reset();
-                    // alert(response);
                     console.log(response);
+                    $("#form-data")[0].reset();
                 }
             });
         });
+        // $(document).on('click', '#create_hospital', function () {
+        //     $.ajax({
+        //         url: '../pharmacy/create.php',
+        //         method: 'post',
+        //         data: $("#form-data").serialize(),
+        //         success: function (response) {
+        //             $("#form-data")[0].reset();
+        //             // alert(response);
+        //             console.log(response);
+        //         }
+        //     });
+        // });
 
-        $(document).on('click', '#clear_hospital', function () {
+        $(document).on('click', '#clear_pharmact', function () {
             $("#form-data")[0].reset();
         })
     });
