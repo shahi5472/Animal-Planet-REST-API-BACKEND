@@ -139,7 +139,18 @@ if (isset($_GET['id'])) {
                                 <div class="col-md-1">
                                     <img
                                             class="comment-pro-pic"
+                                        <?php
+                                        if (PostController::getPostImage($result[$x]['user']['id'], $result[$x]['user']['user_type']) == null) {
+                                            ?>
                                             src="./resources/images/doc-1.png"
+                                            <?php
+                                        } else {
+                                            ?>
+                                            src="uploads/<?php echo PostController::getPostImage($result[$x]['user']['id'], $result[$x]['user']['user_type']); ?>"
+                                            <?php
+                                        }
+                                        ?>
+
                                             alt=""/>
                                 </div>
                                 <div class="col-md-11">
@@ -202,7 +213,17 @@ if (isset($_GET['id'])) {
                                             <div class="col-md-1">
                                                 <img
                                                         class="comment-pro-pic"
+                                                    <?php
+                                                    if (PostController::getPostImage($replyResult[$y]['user']['id'], $replyResult[$y]['user']['user_type']) == null) {
+                                                        ?>
                                                         src="./resources/images/doc-1.png"
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        src="uploads/<?php echo PostController::getPostImage($replyResult[$y]['user']['id'], $replyResult[$y]['user']['user_type']); ?>"
+                                                        <?php
+                                                    }
+                                                    ?>
                                                         alt=""
                                                 />
                                             </div>

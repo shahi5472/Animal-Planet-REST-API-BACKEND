@@ -77,4 +77,9 @@ class PostController extends DB_Functions
     {
         return parent::db()->deletePost($postId);
     }
+
+    public static function getPostImage($id, $type)
+    {
+        return self::db()->getImages($type, $id)[0]['url'];
+    }
 }
