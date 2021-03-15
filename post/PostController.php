@@ -80,6 +80,11 @@ class PostController extends DB_Functions
 
     public static function getPostImage($id, $type)
     {
-        return self::db()->getImages($type, $id)[0]['url'];
+        $value = self::db()->getImages($type, $id);
+        if (!empty($value)) {
+            return $value[0]['url'];
+        } else {
+            return null;
+        }
     }
 }

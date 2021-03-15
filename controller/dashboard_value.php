@@ -37,7 +37,13 @@ class DashboardValue extends DB_Functions
 
     public static function getDoctorImage($id)
     {
-        return self::db()->getImages('doctor', $id)[0]['url'];
+        $value = self::db()->getImages('doctor', $id);
+        if (!empty($value)) {
+            return $value[0]['url'];
+        } else {
+            return null;
+        }
+
     }
 
     public static function getSingleDoctorDetails($id)
