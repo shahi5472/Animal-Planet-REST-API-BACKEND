@@ -55,8 +55,6 @@ if (Session::get("user_type") == 'user') {
 
     <link href="./resource/css/custom.css" rel="stylesheet"/>
 
-    <link href="./resource/css/cal.css" rel="stylesheet"/>
-
     <!--Script -->
     <!-- Bootstrap core JavaScript-->
     <script src="./resource/vendor/jquery/jquery.min.js"></script>
@@ -73,18 +71,8 @@ if (Session::get("user_type") == 'user') {
     <!-- Custom scripts for all pages-->
     <script src="./resource/js/main.min.js"></script>
 
-    <!-- MDB core JavaScript -->
-    <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"
-    ></script>
-
     <!-- Demo scripts for this page-->
     <script src="./resource/js/demo/datatables-demo.js"></script>
-    <script src="./resource/js/demo/chart-area-demo.js"></script>
-    <script src="./resource/js/demo/chart-bar-new.js"></script>
-    <script src="./resource/js/demo/cal.js"></script>
-<!--    <script src="./resource/vendor/jquery/jquery.min.js"></script>-->
 </head>
 
 <body id="page-top">
@@ -156,6 +144,7 @@ if (Session::get("user_type") == 'user') {
             >
                 <div class="dropdown-divider"></div>
                 <a
+                        id="logoutBtn"
                         class="dropdown-item"
                         href="#"
                         data-toggle="modal"
@@ -259,111 +248,7 @@ if (Session::get("user_type") == 'user') {
     <i class="fas fa-angle-up"></i>
 </a>
 
-<!-- Logout Modal-->
-<div
-        class="modal fade"
-        id="logoutModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button
-                        class="close"
-                        type="button"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Select "Logout" below if you are ready to end your current session.
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary"
-                        type="button"
-                        data-dismiss="modal">Cancel
-                </button>
-                <a id="logoutBtn" class="btn btn-primary" href="#">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-    function previewImage(targetObj, View_area) {
-        var preview = document.getElementById(View_area); //div id
-        var ua = window.navigator.userAgent;
-
-        if (ua.indexOf("MSIE") > -1) {
-            targetObj.select();
-            try {
-                var src = document.selection.createRange().text;
-            /
-                var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
-
-
-                if (ie_preview_error) {
-                    preview.removeChild(ie_preview_error);
-                }
-
-                var img = document.getElementById(View_area);
-
-                img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
-            } catch (e) {
-                if (!document.getElementById("ie_preview_error_" + View_area)) {
-                    var info = document.createElement("<p>");
-                    info.id = "ie_preview_error_" + View_area;
-                    info.innerHTML = e.name;
-                    preview.insertBefore(info, null);
-                }
-            }
-
-        } else {
-            var files = targetObj.files;
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                var imageType = /image.*/;
-                if (!file.type.match(imageType))
-                    continue;
-                var prevImg = document.getElementById("prev_" + View_area);
-                if (prevImg) {
-                    preview.removeChild(prevImg);
-                }
-                var img = document.createElement("img");
-                img.id = "prev_" + View_area;
-                img.classList.add("obj");
-                img.file = file;
-                img.style.width = '100px';
-                img.style.height = '100px';
-                preview.appendChild(img);
-                if (window.FileReader) {
-                    var reader = new FileReader();
-                    reader.onloadend = (function (aImg) {
-                        return function (e) {
-                            aImg.src = e.target.result;
-                        };
-                    })(img);
-                    reader.readAsDataURL(file);
-                } else {
-
-                    if (!document.getElementById("sfr_preview_error_"
-                        + View_area)) {
-                        var info = document.createElement("p");
-                        info.id = "sfr_preview_error_" + View_area;
-                        info.innerHTML = "not supported FileReader";
-                        preview.insertBefore(info, null);
-                    }
-                }
-            }
-        }
-    }
-
     $(document).ready(function () {
         $(document).on('click', '#logoutBtn', function () {
             $.ajax({
@@ -371,9 +256,7 @@ if (Session::get("user_type") == 'user') {
                 method: 'post',
                 success: function (response) {
                     console.log(response);
-                    if (!response.error) {
-                        window.location = 'index.php';
-                    }
+                    window.location = 'login.php';
                 }
             });
         });
