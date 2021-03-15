@@ -87,6 +87,7 @@ if (Session::get("id") != false) {
                                     id="inputEmail3"
                                     placeholder="Email"
                                     name="email"
+                                    autocomplete="off"
                             />
                         </div>
                     </div>
@@ -101,6 +102,7 @@ if (Session::get("id") != false) {
                                     id="inputPassword3"
                                     placeholder="Password"
                                     name="password"
+                                    autocomplete="off"
                             />
                         </div>
                     </div>

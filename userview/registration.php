@@ -84,6 +84,7 @@ if (Session::get("id") != false) {
                                     id="name"
                                     class="form-control"
                                     placeholder="Name"
+                                    autocomplete="off"
                                     name="name"/>
                         </div>
                     </div>
@@ -97,7 +98,7 @@ if (Session::get("id") != false) {
                                     class="form-control"
                                     placeholder="Email"
                                     name="email"
-
+                                    autocomplete="off"
                             />
                         </div>
                     </div>
@@ -112,6 +113,7 @@ if (Session::get("id") != false) {
                                     placeholder="Contact"
                                     name="phone"
                                     id="phone"
+                                    autocomplete="off"
                             />
                         </div>
                     </div>
@@ -126,6 +128,7 @@ if (Session::get("id") != false) {
                                     placeholder="Password"
                                     name="password"
                                     id="password"
+                                    autocomplete="off"
                             />
                             <input hidden name="user_type" value="user"/>
                         </div>
