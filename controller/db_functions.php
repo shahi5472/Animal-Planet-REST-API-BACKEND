@@ -277,11 +277,18 @@ WHERE images.image_src = 'pharmacy';");
 
     function getSearchPost($value)
     {
-        $result = $this->conn->prepare("SELECT * FROM `posts` WHERE `title` LIKE ?");
-        $result->bind_param("s", $value);
-        $result->execute();
-        $posts = $result->get_result()->fetch_all(MYSQLI_ASSOC);
-        $result->close();
+//        $result = $this->conn->prepare("SELECT * FROM `posts` WHERE `title` LIKE ?");
+//        $result->bind_param("s", $value);
+//        $result->execute();
+//        $posts = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+//        $result->close();
+//        return $posts;
+
+        $result = $this->conn->query("SELECT * FROM `posts` WHERE `title` LIKE '%$value%'");
+        $posts = array();
+        while ($item = mysqli_fetch_assoc($result)) {
+            $posts[] = $item;
+        }
         return $posts;
     }
 

@@ -157,7 +157,7 @@ Session::init();
             $('.showList').empty();
             $.ajax({
                 url: '../post/index.php',
-                method: 'get',
+                method: 'post',
                 data: $("#search-form-data").serialize(),
                 success: function (response) {
                     var json = JSON.parse(response);
@@ -172,11 +172,11 @@ Session::init();
         function loadData() {
             $.ajax({
                 url: '../post/index.php',
-                method: 'get',
+                method: 'post',
                 success: function (response) {
                     var json = JSON.parse(response);
                     $.each(json, function (key, value) {
-                        // console.log(value)
+                        console.log(value)
                         $('.showList').append('<div class="single-question"><a href="single-question.php?id=' + value.id + '"><div class="single-question-title"><h4>' + value.title + '?</h4></div><div class="single-question-body"><p>' + value.description + '</p></div><div class="single-question-tags"><p class="single-tag">' + value.animal_type + '</p></div></a></div>');
                     });
                 }

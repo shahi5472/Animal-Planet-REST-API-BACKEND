@@ -4,10 +4,11 @@ require_once '../post/PostController.php';
 
 $response = array();
 
-if ($_SERVER['REQUEST_METHOD'] == "GET") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    if (isset($_GET['searchValue'])) {
-        $value = $_GET;
+    if (isset($_POST['searchValue'])) {
+        $value = $_POST['searchValue'];
+        $response['search'] = $value;
         $response = PostController::index($value);
     } else {
         $response = PostController::index(null);
