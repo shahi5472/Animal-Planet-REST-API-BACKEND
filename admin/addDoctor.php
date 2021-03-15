@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div class="container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
@@ -76,9 +72,7 @@
                                 <div class="form-group">
                                     <label for="email">Upload doctor Photo </label>
                                     <input
-                                            type="file"
-                                            name="profile_pt"
-                                            id="profile_pt"
+                                            type="file" id="file" name="file"
                                             onchange="previewImage(this,'View_area')"
                                     />
                                     <div
@@ -89,9 +83,7 @@
                             height: 100px;
                             color: black;
                             border: 0px solid black;
-                            dispaly: inline;
-                          "
-                                    ></div>
+                            display: inline;"></div>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">

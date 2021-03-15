@@ -124,7 +124,10 @@ class  DB_Functions
 
     function getAllHospital()
     {
-        $result = $this->conn->prepare("SELECT * FROM hospitals");
+        $result = $this->conn->prepare("SELECT hospitals.*, images.url as URL
+FROM hospitals
+INNER JOIN images ON hospitals.id=images.user_id
+WHERE images.image_src = 'hospital'");
         $result->execute();
         $hospitals = $result->get_result()->fetch_all(MYSQLI_ASSOC);
         $result->close();
@@ -187,10 +190,11 @@ WHERE images.image_src = 'pharmacy';");
     {
         $result = $this->conn->prepare("INSERT INTO `hospitals`(`name`, `address`, `contact`, `created_at`, `updated_at`) VALUES (?,?,?,?,?)");
         $result->bind_param("sssss", $name, $address, $contact, $created_at, $updated_at);
-        $hospital = $result->execute();
+        $result->execute();
+        $hospital = $result->insert_id;
         $result->close();
         if ($hospital) {
-            return true;
+            return $hospital;
         } else {
             return false;
         }
@@ -209,7 +213,6 @@ WHERE images.image_src = 'pharmacy';");
             return false;
         }
     }
-
 
 
     function updateHospital($id, $name, $address, $contact, $updated_at)

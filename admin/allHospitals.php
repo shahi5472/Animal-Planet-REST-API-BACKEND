@@ -17,6 +17,7 @@
                     <thead class="text-center">
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Name</th>
                         <th scope="col">Contact</th>
                         <th scope="col">Address</th>
@@ -55,6 +56,7 @@
                 $.each(json.hospitals, function (key, value) {
                     x++;
                     $('.showList').append('<tr><th>' + x + '' +
+                        '</th><td><img height="80" width="100" src="../userview/uploads/' + value['URL'] + '" alt=""/>' +
                         '</th><td>' + value['name'] + '' +
                         '</td><td>' + value['contact'] + '' +
                         '</td><td>' + value['address'] + '' +

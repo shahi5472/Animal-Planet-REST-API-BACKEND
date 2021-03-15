@@ -15,10 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $created_at = date("Y-m-d  h:i:s");
         $updated_at = date("Y-m-d  h:i:s");
 
-        if ($db->createHospital($name, $address, $contact, $created_at, $updated_at)) {
+        if (!empty($_FILES['file']['name'])) {
+            $photo = explode(".", $_FILES['file']['name']);
+            $photo = end($photo);
+            $photo_name = "IMG_" . rand(10000000000, 9999999999999) . "." . $photo;
+        }
+
+        $result = $db->createHospital($name, $address, $contact, $created_at, $updated_at);
+        if ($result) {
             $response['error'] = FALSE;
             $response['message'] = 'Create hospital successful';
-            $response['hospital'] = $db->getAllHospital();
+            $db->imageInsert($photo_name, 'hospital', $result, $created_at, $updated_at);
+            move_uploaded_file($_FILES['file']['tmp_name'], '../userview/uploads/' . $photo_name);
         } else {
             $response['error'] = TRUE;
             $response['message'] = 'Require fields are missing, try again';

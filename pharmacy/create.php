@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         $result = $db->createPharmacy($name, $address, $contact, $created_at, $updated_at);
-        $response['result'] = $result;
         if ($result) {
             $response['error'] = FALSE;
             $response['message'] = 'Create Pharmacy successful';

@@ -122,7 +122,7 @@ Session::init();
                     $('.showList').append('<div class="col-md-4">' +
                         '<div class="hospital-card">' +
                         '<div class="hospital-img">' +
-                        '<img src="./resources/images/pet-hospital-2.jpg" alt=""/></div>' +
+                        '<img height="200" width="200" src="../userview/uploads/' + value['URL'] + '" alt=""/></div>' +
                         '<h4 class="doc-name">' + value.name + '</h4>' +
                         '<p class="hospital-description">' +
                         '' + value.contact +

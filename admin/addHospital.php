@@ -58,9 +58,7 @@
                                 <div class="form-group">
                                     <label for="email">Upload Hospital Photo </label>
                                     <input
-                                            type="file"
-                                            name="profile_pt"
-                                            id="profile_pt"
+                                            type="file" id="file" name="file"
                                             onchange="previewImage(this,'View_area')"
                                     />
                                     <div id="View_area"
@@ -74,15 +72,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div style="margin-left: 10px;"></div>
+                        <button type="submit" class="btn btn-success btn-lg">
+                            Create
+                        </button>
+                        <div style="margin-left: 20px;"></div>
+                        <button id="clear_hospital"  type="button" class="btn btn-danger btn-lg">
+                            Reset
+                        </button>
+                    </div>
                 </form>
 
-                <button id="create_hospital" type="button" class="btn btn-success btn-lg">
-                    Create
-                </button>
-
-                <button id="clear_hospital" type="button" class="btn btn-danger btn-lg">
-                    Reset
-                </button>
             </div>
         </div>
     </div>
@@ -91,18 +92,34 @@
 <script>
 
     $(document).ready(function () {
-        $(document).on('click', '#create_hospital', function () {
+        $("#form-data").on("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
             $.ajax({
-                url: '../hospital/create.php',
-                method: 'post',
-                data: $("#form-data").serialize(),
+                url: "../hospital/create.php",
+                type: "POST",
+                cache: false,
+                data: formData,
+                contentType: false,
+                processData: false,
                 success: function (response) {
-                    $("#form-data")[0].reset();
-                    // alert(response);
                     console.log(response);
+                    $("#form-data")[0].reset();
                 }
             });
         });
+        // $(document).on('click', '#create_hospital', function () {
+        //     $.ajax({
+        //         url: '../hospital/create.php',
+        //         method: 'post',
+        //         data: $("#form-data").serialize(),
+        //         success: function (response) {
+        //             $("#form-data")[0].reset();
+        //             // alert(response);
+        //             console.log(response);
+        //         }
+        //     });
+        // });
 
         $(document).on('click', '#clear_hospital', function () {
             $("#form-data")[0].reset();
