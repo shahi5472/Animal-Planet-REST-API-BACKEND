@@ -90,7 +90,7 @@ if (isset($_GET['id'])) {
         <h2 class="question-title"><?php echo $response['post']['title']; ?></h2>
         <div class="question-posted">
             <p class="question-posted-time">
-                <?php echo date_format(date_create($response['post']['created_at']), "h:i:s a"); ?>
+                <?php echo date_format(date_create($response['post']['created_at']), "h:m:s a"); ?>
             </p>
             <p class="question-posted-date">
                 <?php echo date_format(date_create($response['post']['created_at']), "d-M-Y"); ?>
@@ -105,8 +105,10 @@ if (isset($_GET['id'])) {
             $result = $response['post']['images'];
             for ($x = 0; $x < count($result); $x++) {
                 ?>
-                <div type="button" data-toggle="modal" data-target="#exampleModal">
-                    <img src="uploads/<?php echo $result[$x]['url']; ?>" alt=""/>
+                <div id="showImageBtn" data-id="<?php echo $x; ?>" type="button" data-toggle="modal" data-target="#exampleModal">
+                    <img src="uploads/<?php echo $result[$x]['url']; ?>" alt="<?php echo $result[$x]['url']; ?>"
+                         id="getImageUrl<?php echo $x; ?>"
+                    />
                 </div>
                 <?php
             }
@@ -156,7 +158,7 @@ if (isset($_GET['id'])) {
                                 <div class="col-md-11">
                                     <div class="comment-posted">
                                         <p class="comment-posted-time">
-                                            <?php echo date_format(date_create($result[$x]['created_at']), "h:i:sa"); ?>
+                                            <?php echo date_format(date_create($result[$x]['created_at']), "h:m:s a"); ?>
                                         </p>
                                         <p class="comment-posted-date">
                                             <?php echo date_format(date_create($result[$x]['created_at']), "d-M-Y"); ?>
@@ -230,7 +232,7 @@ if (isset($_GET['id'])) {
                                             <div class="col-md-11">
                                                 <div class="comment-posted">
                                                     <p class="comment-posted-time">
-                                                        <?php echo date_format(date_create($replyResult[$y]['created_at']), "H-m-s a"); ?>
+                                                        <?php echo date_format(date_create($replyResult[$y]['created_at']), "h:m:s a"); ?>
                                                     </p>
                                                     <p class="comment-posted-date">
                                                         <?php echo date_format(date_create($replyResult[$y]['created_at']), "d-M-Y"); ?>
@@ -335,8 +337,7 @@ if (Session::get('id') != false) {
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
+        aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -344,21 +345,18 @@ if (Session::get('id') != false) {
                         type="button"
                         class="close"
                         data-dismiss="modal"
-                        aria-label="Close"
-                >
+                        aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <img style="width: 100%" src="./resources/images/pet1.jpg" alt=""/>
+                <img id="showImage" style="width: 100%" alt=""/>
             </div>
             <div class="modal-footer">
                 <button
                         type="button"
                         class="btn btn-secondary"
-                        data-dismiss="modal"
-                >
-                    Close
+                        data-dismiss="modal">Close
                 </button>
             </div>
         </div>
@@ -392,6 +390,13 @@ if (Session::get('id') != false) {
 <script>
 
     $(document).ready(function () {
+
+        $(document).on('click', '#showImageBtn', function () {
+            var id = $(this).data('id');
+            var image = $('#getImageUrl' + id).attr('src');
+            $('#showImage').attr("src", image);
+        });
+
         $(document).on('click', '#replyComment', function () {
             $.ajax({
                 url: '../comments/createReplyComment.php',
