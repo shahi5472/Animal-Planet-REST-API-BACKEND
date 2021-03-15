@@ -122,7 +122,7 @@ if (isset($_GET['id'])) {
         <h2>Comments</h2>
 
         <?php
-        if ($response['post']['comments'] == null) {
+        if (!$response['post']['comments']) {
             ?>
             <br>
             <h1 style="color: red">No Comment Found</h1>
