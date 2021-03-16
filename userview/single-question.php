@@ -104,6 +104,15 @@ if (Session::get("user_type") == 'admin') {
             </p>
         </div>
         <p class="question-description"><?php echo $response['post']['description']; ?></p>
+        <?php
+        if (Session::get('user_type') == 'doctor') {
+            if (empty($response['post']['doctor_id'])) {
+                ?>
+                <a href="#" id="takenBtn" data-id="<?php echo $response['post']['id']; ?>" class="btn btn-info btn-sm">Taken
+                    this Post</a>
+            <?php }
+        }
+        ?>
         <div class="question-images">
             <?php
             $result = $response['post']['images'];
@@ -421,6 +430,23 @@ if (Session::get('id') != false) {
                 url: '../comments/createComment.php',
                 method: 'post',
                 data: $("#comment-data").serialize(),
+                success: function (response) {
+                    $("#comment-data")[0].reset();
+                    // alert(response);
+                    console.log(response);
+                    window.location = 'single-question.php?id=<?php echo $pageId; ?>';
+                }
+            });
+        });
+
+        $(document).on('click', '#takenBtn', function () {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '../post/doctorTaken.php',
+                method: 'post',
+                data: {
+                    'post_id': id
+                },
                 success: function (response) {
                     $("#comment-data")[0].reset();
                     // alert(response);

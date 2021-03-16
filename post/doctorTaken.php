@@ -1,13 +1,16 @@
 <?php
 
 require_once '../post/PostController.php';
+require_once '../auth/Session.php';
+
+Session::init();
 
 $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['doctor_id']) && isset($_POST['post_id'])) {
+    if (isset($_POST['post_id'])) {
 
-        $doctorId = $_POST['doctor_id'];
+        $doctorId = Session::get('id');
         $postId = $_POST['post_id'];
 
         if (PostController::doctorTakenUpdate($doctorId, $postId)) {
@@ -17,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $response['error'] = TRUE;
             $response['message'] = 'Internal server error';
         }
+
         echo json_encode($response);
     } else {
         $response['error'] = TRUE;
