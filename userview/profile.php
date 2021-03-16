@@ -68,6 +68,29 @@ if (Session::get("user_type") == 'admin') {
                         <a class="nav-link" href="all-pharmacy.php">All Pharmacy</a>
                     </li>
                 </ul>
+                <!--                //Notification-->
+                <ul class="notifications">
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a
+                                class="nav-link "
+                                href="#"
+                                id="alertsDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                        >
+                            <span class="badge badge-danger">9+</span>
+                            <i class="fas fa-bell fa-fw"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="alertsDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>
@@ -116,6 +139,21 @@ if (Session::get("user_type") == 'admin') {
                                value="<?php echo Session::get('phone') == null ? '' : Session::get('phone') ?>"
                         />
                     </div>
+                    <?php
+                    $value = Session::get('specialists');
+                    if (Session::get('user_type') == 'doctor') {
+                        ?>
+                        <div class="form-group">
+                            <label for="specialists">Specialists</label>
+                            <input type="specialists"
+                                   class="form-control"
+                                   name="specialists"
+                                   placeholder="Specialists"
+                                   value="<?php echo $value == null ? '' : $value; ?>"
+                            />
+                        </div>
+                    <?php } ?>
+
                     <div class="form-group">
                         <label for="exampleInputName">Address</label>
                         <input type="address"

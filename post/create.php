@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Dhaka");
 
 require_once '../controller/db_functions.php';
 
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $description = $_POST['description'];
         $animalType = $_POST['animalType'];
         $userId = $_POST['userId'];
-        $created_at = date("Y-m-d  h:i:s");
+        $created_at = date('Y-m-d  h:i:s');
         $updated_at = date("Y-m-d  h:i:s");
 
         $result = $db->createPost($title, $description, $animalType, $userId, $created_at, $updated_at);

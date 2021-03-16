@@ -431,3 +431,10 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.notifications{
+    list-style-type: none;
+}
+.notifications .fa-bell{
+    color: white;
+}
