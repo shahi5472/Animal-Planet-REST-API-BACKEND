@@ -136,7 +136,7 @@ if (Session::get("user_type") == 'admin') {
         <h2>Comments</h2>
 
         <?php
-        if (!$response['post']['comments']) {
+        if (isset($response['post']['comments'])) {
             ?>
             <br>
             <h1 style="color: red">No Comment Found</h1>
