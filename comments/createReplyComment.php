@@ -16,12 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $created_at = date("Y-m-d  h:i:s");
         $updated_at = date("Y-m-d  h:i:s");
 
-        if ($db->insertReplyComment($commentId, $userId, $message, $created_at, $updated_at)) {
-            $response['error'] = TRUE;
-            $response['message'] = 'successful';
-        } else {
+        if(empty($message)){
             $response['error'] = FALSE;
             $response['message'] = 'invalid error';
+        }else{
+            if ($db->insertReplyComment($commentId, $userId, $message, $created_at, $updated_at)) {
+                $response['error'] = TRUE;
+                $response['message'] = 'successful';
+            } else {
+                $response['error'] = FALSE;
+                $response['message'] = 'invalid error';
+            }
         }
 
         echo json_encode($response);
