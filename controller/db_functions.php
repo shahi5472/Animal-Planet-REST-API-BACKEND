@@ -559,4 +559,11 @@ GROUP BY users.id,users.name ORDER BY Total DESC;";
         $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
         return $result;
     }
+
+    function getDoctorAdmin()
+    {
+        $query = "SELECT `id`, `name` FROM `users` WHERE `user_type` = 'doctor' OR `user_type` = 'admin';";
+        $result = $this->conn->query($query) or die($this->conn->error . __LINE__);
+        return $result;
+    }
 }

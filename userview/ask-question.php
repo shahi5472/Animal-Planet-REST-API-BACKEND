@@ -1,6 +1,7 @@
 <?php
 
 include '../auth/Session.php';
+include '../notification/NotificationController.php';
 
 require_once '../controller/db_functions.php';
 
@@ -31,6 +32,12 @@ if (isset($_POST['questionPostBtn'])) {
     $updated_at = date("Y-m-d  h:i:s");
 
     $result = $db->createPost($title, $description, $animalType, $userId, $created_at, $updated_at);
+
+    if (Session::get("user_type") == 'user') {
+        $data = Session::get('name') . '  ask this question  ' . $title;
+
+        NotificationController::createDoctorAdminNotification($data);
+    }
 
     $imageCount = count($_FILES['photo']['name']);
 

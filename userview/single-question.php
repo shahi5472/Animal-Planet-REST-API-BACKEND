@@ -108,8 +108,11 @@ if (Session::get("user_type") == 'admin') {
         if (Session::get('user_type') == 'doctor') {
             if (empty($response['post']['doctor_id'])) {
                 ?>
-                <a href="#" id="takenBtn" data-id="<?php echo $response['post']['id']; ?>" class="btn btn-info btn-sm">Taken
+                <a href="#" id="takenBtn" data-id="<?php echo $response['post']['id']; ?>"
+                   data-user="<?php echo $response['post']['user_id']; ?>" class="btn btn-info btn-sm">Taken
                     this Post</a>
+                <br>
+                <br>
             <?php }
         }
         ?>
@@ -441,17 +444,19 @@ if (Session::get('id') != false) {
 
         $(document).on('click', '#takenBtn', function () {
             var id = $(this).data('id');
+            var userId = $(this).data('user');
             $.ajax({
                 url: '../post/doctorTaken.php',
                 method: 'post',
                 data: {
-                    'post_id': id
+                    'post_id': id,
+                    'user_id': userId
                 },
                 success: function (response) {
-                    $("#comment-data")[0].reset();
                     // alert(response);
+                    $('#takenBtn').hide();
                     console.log(response);
-                    window.location = 'single-question.php?id=<?php echo $pageId; ?>';
+                    //window.location = 'single-question.php?id=<?php //echo $pageId; ?>//';
                 }
             });
         });

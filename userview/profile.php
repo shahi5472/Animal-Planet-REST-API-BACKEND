@@ -1,6 +1,7 @@
 <?php
 
 include '../auth/Session.php';
+include '../notification/NotificationController.php';
 
 Session::init();
 
@@ -13,6 +14,8 @@ if (Session::get("user_type") == 'admin') {
     header("Location:index.php");
     exit();
 }
+
+$response = NotificationController::getNotification(Session::get('id'));
 
 ?>
 <!DOCTYPE html>
@@ -71,23 +74,25 @@ if (Session::get("user_type") == 'admin') {
                 <!--                //Notification-->
                 <ul class="notifications">
                     <li class="nav-item dropdown no-arrow mx-1">
-                        <a
-                                class="nav-link "
-                                href="#"
-                                id="alertsDropdown"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                        >
-                            <span class="badge badge-danger">9+</span>
-                            <i class="fas fa-bell fa-fw"></i>
+                        <a class="nav-link "
+                           href="#"
+                           id="alertsDropdown"
+                           role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="badge badge-danger"><?php echo count($response); ?>+</span>
+                            <i style="color: #0d0d0d" class="fas fa-bell fa-fw"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right"
-                                aria-labelledby="alertsDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
+                        <div class="dropdown-menu dropdown-menu-right notificationList"
+                             aria-labelledby="alertsDropdown">
+                            <?php
+                            foreach ($response as $data) {
+                                ?>
+                                <a class="dropdown-item" href="#"><?php echo $data['data']; ?></a>
+                                <div class="dropdown-divider"></div>
+                            <?php }
+                            ?>
                         </div>
                     </li>
                 </ul>
@@ -241,6 +246,7 @@ if (Session::get("user_type") == 'admin') {
 <script>
 
     $(document).ready(function () {
+
         $("#form-data").on("submit", function (e) {
             e.preventDefault();
             var formData = new FormData(this);
