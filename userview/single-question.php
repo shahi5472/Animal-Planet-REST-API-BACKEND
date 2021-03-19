@@ -139,7 +139,7 @@ if (Session::get("user_type") == 'admin') {
         <h2>Comments</h2>
 
         <?php
-        if (isset($response['post']['comments'])) {
+        if (!isset($response['post']['comments'])) {
             ?>
             <br>
             <h1 style="color: red">No Comment Found</h1>
@@ -190,7 +190,9 @@ if (Session::get("user_type") == 'admin') {
                                     if (Session::get('id')) {
                                         ?>
                                         <div class="new-reply">
-                                            <form id="form-data" enctype="multipart/form-data" method="post">
+                                            <form id="reply-data-<?php echo $x; ?>"
+                                                  enctype="multipart/form-data"
+                                                  method="post">
                                                 <div class="form-group">
                                                     <input id="commentId" hidden name="commentId"
                                                            value="<?php echo $result[$x]['id']; ?>">
@@ -199,6 +201,10 @@ if (Session::get("user_type") == 'admin') {
                                                            name="userId"
                                                            value="<?php echo Session::get('id'); ?>">
 
+                                                    <input id="commentOwnerId" hidden
+                                                           name="commentOwnerId"
+                                                           value="<?php echo $result[$x]['user']['id']; ?>">
+
                                                     <textarea
                                                             class="form-control"
                                                             id="message"
@@ -206,7 +212,8 @@ if (Session::get("user_type") == 'admin') {
                                                             placeholder="reply here"
                                                             name="message"></textarea>
                                                     <br>
-                                                    <button id="replyComment" type="submit" class="btn btn-success">
+                                                    <button id="replyComment" type="submit" class="btn btn-success"
+                                                            data-id="<?php echo $x; ?>">
                                                         Reply
                                                     </button>
                                                 </div>
@@ -294,6 +301,10 @@ if (Session::get('id') != false) {
                 <input id="userId" hidden
                        name="userId"
                        value="<?php echo Session::get('id'); ?>">
+
+                <input id="ownerId" hidden
+                       name="ownerId"
+                       value="<?php echo $response['post']['user_id']; ?>">
 
                 <div class="form-group">
                   <textarea
@@ -415,17 +426,19 @@ if (Session::get('id') != false) {
         });
 
         $(document).on('click', '#replyComment', function () {
+            var id = $(this).data('id');
             $.ajax({
                 url: '../comments/createReplyComment.php',
                 method: 'post',
-                data: $("#form-data").serialize(),
+                data: $("#reply-data-"+id).serialize(),
                 success: function (response) {
-                    $("#form-data")[0].reset();
+                    $("#reply-data-"+id)[0].reset();
                     // alert(response);
                     console.log(response);
                     window.location = 'single-question.php?id=<?php echo $pageId; ?>';
                 }
             });
+
         });
 
         $(document).on('click', '#postComment', function () {
