@@ -259,6 +259,9 @@ $response = NotificationController::getNotification(Session::get('id'));
                 processData: false,
                 success: function (response) {
                     console.log(response);
+                    if (!response.error) {
+                        window.location = 'profile.php';
+                    }
                 }
             });
         });

@@ -294,7 +294,7 @@ WHERE images.image_src = 'pharmacy';");
 
     function getImages($image_src, $user_id)
     {
-        $result = $this->conn->prepare("SELECT * FROM images WHERE image_src =? and user_id =?");
+        $result = $this->conn->prepare("SELECT * FROM images WHERE image_src =? and user_id =? ORDER BY id DESC");
         $result->bind_param("ss", $image_src, $user_id);
         $result->execute();
         $images = $result->get_result()->fetch_all(MYSQLI_ASSOC);

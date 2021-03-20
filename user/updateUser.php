@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $photo_name = "IMG_" . rand(10000000000, 9999999999999) . "." . $photo;
             $db->imageInsert($photo_name, $user_type, $id, $updated_at, $updated_at);
             move_uploaded_file($_FILES['file']['tmp_name'], '../userview/uploads/' . $photo_name);
+            Session::set("image", $photo_name);
         }
 
         if ($db->checkUser(null, $id)) {
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 Session::set("phone", $userData['phone']);
                 Session::set("address", $userData['address']);
                 Session::set("specialists", $userData['specialists']);
-                Session::set("image", $db->getImages(Session::get('user_type'), $userData['id'])[0]['url']);
+//                Session::set("image", $db->getImages(Session::get('user_type'), $userData['id'])[0]['url']);
 
                 $response['error'] = FALSE;
                 $response['message'] = 'Update successful';
