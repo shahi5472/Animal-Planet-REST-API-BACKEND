@@ -89,7 +89,8 @@ $response = NotificationController::getNotification(Session::get('id'));
                             <?php
                             foreach ($response as $data) {
                                 ?>
-                                <a class="dropdown-item" href="single-question.php?id=<?php echo $data['common_id']; ?>"><?php echo $data['data']; ?></a>
+                                <a class="dropdown-item"
+                                   href="single-question.php?id=<?php echo $data['common_id']; ?>"><?php echo $data['data']; ?></a>
                                 <div class="dropdown-divider"></div>
                             <?php }
                             ?>
@@ -111,7 +112,8 @@ $response = NotificationController::getNotification(Session::get('id'));
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-img">
-                    <img src="uploads/<?php echo Session::get('image'); ?>" alt=""/>
+                    <img src="uploads/<?php echo Session::get('image') == null ? 'default_user.png' : Session::get('image'); ?>"
+                         alt=""/>
                 </div>
                 <form id="form-data" enctype="multipart/form-data" method="post">
                     <div class="form-group">

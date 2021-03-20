@@ -149,7 +149,7 @@ if (Session::get("user_type") == 'admin') {
                                     <?php
                                     if (DashboardValue::getDoctorImage($item['id']) == null) {
                                         ?>
-                                        src="resources/images/doc-1.png"
+                                        src="resources/images/default_user.png"
                                     <?php } else {
                                         ?>
                                         src="uploads/<?php echo DashboardValue::getDoctorImage($item['id']); ?>"
