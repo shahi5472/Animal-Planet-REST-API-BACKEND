@@ -33,18 +33,18 @@ if (isset($_POST['questionPostBtn'])) {
 
     $result = $db->createPost($title, $description, $animalType, $userId, $created_at, $updated_at);
 
-    if (Session::get("user_type") == 'user') {
-        $data = Session::get('name') . '  ask this question  ' . $title;
-
-        NotificationController::createDoctorAdminNotification($data);
-    }
-
     $imageCount = count($_FILES['photo']['name']);
 
     if ($result) {
         $post_data = PostController::getSinglePostById($result);
         $postId = $post_data['post']['id'];
         $response = $post_data;
+
+        if (Session::get("user_type") == 'user') {
+            $data = Session::get('name') . '  ask this question  ' . $title;
+
+            NotificationController::createDoctorAdminNotification($data, $post_data['post']['id']);
+        }
 
         for ($x = 0; $x < $imageCount; $x++) {
             $photo = explode(".", $_FILES['photo']['name'][$x]);

@@ -488,10 +488,10 @@ WHERE images.image_src = 'pharmacy';");
         return $notifications;
     }
 
-    function createNotification($userId, $data, $createAt, $updateAt)
+    function createNotification($userId, $data, $commonId, $createAt, $updateAt)
     {
-        $result = $this->conn->prepare("INSERT INTO `notifications`(`user_id`, `data`, `created_at`, `updated_at`) VALUES (?,?,?,?)");
-        $result->bind_param("isss", $userId, $data, $createAt, $updateAt);
+        $result = $this->conn->prepare("INSERT INTO `notifications`(`user_id`, `data`, `common_id`,`created_at`, `updated_at`) VALUES (?,?,?,?,?)");
+        $result->bind_param("issss", $userId, $data, $commonId, $createAt, $updateAt);
         $notification = $result->execute();
         $result->close();
         if ($notification) {

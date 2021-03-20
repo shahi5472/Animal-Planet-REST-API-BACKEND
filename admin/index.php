@@ -17,6 +17,12 @@ if (Session::get("user_type") == 'user') {
     exit();
 }
 
+//if (Session::get("user_type") == 'admin') {
+//    include  '../notification/index.php?userId='.Session::get('id');
+//    include '../notification/NotificationController.php';
+//$response = NotificationController::getNotification(Session::get('id'));
+//}
+
 ?>
 
 <!DOCTYPE html>
@@ -99,26 +105,21 @@ if (Session::get("user_type") == 'user') {
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
-            <a hidden
-               class="nav-link dropdown-toggle"
-               href="#"
-               id="alertsDropdown"
-               role="button"
-               data-toggle="dropdown"
-               aria-haspopup="true"
-               aria-expanded="false"
+            <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="alertsDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
             >
-                <span class="badge badge-danger">9+</span>
+                <span class="badge badge-danger totalNoti"></span>
                 <i class="fas fa-bell fa-fw"></i>
             </a>
             <div
-                    class="dropdown-menu dropdown-menu-right"
-                    aria-labelledby="alertsDropdown"
-            >
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                    class="dropdown-menu dropdown-menu-right notificationList"
+                    aria-labelledby="alertsDropdown">
             </div>
         </li>
         <li class="nav-item dropdown no-arrow">
@@ -260,6 +261,17 @@ if (Session::get("user_type") == 'user') {
                     console.log(response);
                     window.location = 'login.php';
                 }
+            });
+        });
+
+        var i;
+        $.get("../notification/index.php?userId=<?php echo Session::get('id');?>", function (data, status) {
+            var result = JSON.parse(data);
+            $('.totalNoti').text(result.notifications.length+"+");
+            $.each(result.notifications, function (key, value) {
+                // console.log(value);
+                // console.log(value)
+                $('.notificationList').append('<a class="dropdown-item" href="index.php?page=singlePost&id=' + value.common_id + '">' + value.data + '</a>');
             });
         });
     });

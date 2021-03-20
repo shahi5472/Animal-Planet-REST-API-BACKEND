@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $userInfo = $db->getUser(null, $userId);
                 $data = $userInfo['name'] . '  Comment your post';
-                NotificationController::create($ownerId, $data);
+                NotificationController::create($ownerId, $data, $postId);
 
             } else {
                 $response['error'] = FALSE;

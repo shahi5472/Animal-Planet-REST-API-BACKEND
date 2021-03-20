@@ -194,6 +194,9 @@ if (Session::get("user_type") == 'admin') {
                                                   enctype="multipart/form-data"
                                                   method="post">
                                                 <div class="form-group">
+                                                    <input id="pageId" type="hidden" hidden name="pageId"
+                                                           value="<?php echo $pageId; ?>">
+
                                                     <input id="commentId" hidden name="commentId"
                                                            value="<?php echo $result[$x]['id']; ?>">
 
@@ -430,9 +433,9 @@ if (Session::get('id') != false) {
             $.ajax({
                 url: '../comments/createReplyComment.php',
                 method: 'post',
-                data: $("#reply-data-"+id).serialize(),
+                data: $("#reply-data-" + id).serialize(),
                 success: function (response) {
-                    $("#reply-data-"+id)[0].reset();
+                    $("#reply-data-" + id)[0].reset();
                     // alert(response);
                     console.log(response);
                     window.location = 'single-question.php?id=<?php echo $pageId; ?>';

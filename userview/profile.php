@@ -89,7 +89,7 @@ $response = NotificationController::getNotification(Session::get('id'));
                             <?php
                             foreach ($response as $data) {
                                 ?>
-                                <a class="dropdown-item" href="#"><?php echo $data['data']; ?></a>
+                                <a class="dropdown-item" href="single-question.php?id=<?php echo $data['common_id']; ?>"><?php echo $data['data']; ?></a>
                                 <div class="dropdown-divider"></div>
                             <?php }
                             ?>

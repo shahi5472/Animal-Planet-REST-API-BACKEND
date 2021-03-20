@@ -11,6 +11,7 @@ $response = array();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['commentId']) && isset($_POST['userId']) && isset($_POST['message'])) {
 
+        $pageId = $_POST['pageId'];
         $commentOwnerId = $_POST['commentOwnerId'];
         $commentId = $_POST['commentId'];
         $userId = $_POST['userId'];
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $userInfo = $db->getUser(null, $userId);
                 $data = $userInfo['name'] . '  reply your comment is ' . $message;
-                NotificationController::create($commentOwnerId, $data);
+                NotificationController::create($commentOwnerId, $data, $pageId);
 
             } else {
                 $response['error'] = FALSE;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 08, 2021 at 06:39 PM
+-- Generation Time: Mar 20, 2021 at 02:27 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -29,15 +29,6 @@ CREATE TABLE `comments` (
                             `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `post_id`, `user_id`, `message`, `created_at`, `updated_at`) VALUES
-(1, 3, 9, 'helo one', '2021-03-08 00:16:41', '2021-03-08 00:16:41'),
-(2, 3, 8, 'frnf akjfnasjkf anmdf', '2021-03-08 00:19:52', '2021-03-08 00:19:52'),
-(3, 1, 11, 'iafbsjdnf ', '2021-03-08 00:21:02', '2021-03-08 00:21:02');
-
 -- --------------------------------------------------------
 
 --
@@ -52,14 +43,6 @@ CREATE TABLE `comment_replies` (
                                    `created_at` timestamp NULL DEFAULT NULL,
                                    `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `comment_replies`
---
-
-INSERT INTO `comment_replies` (`id`, `comment_id`, `user_id`, `message`, `created_at`, `updated_at`) VALUES
-(1, 1, 9, 'reply comment one', '2021-03-08 00:16:51', '2021-03-08 00:16:51'),
-(2, 1, 11, 'jakb sdmnf a', '2021-03-08 00:21:16', '2021-03-08 00:21:16');
 
 -- --------------------------------------------------------
 
@@ -76,14 +59,6 @@ CREATE TABLE `hospitals` (
                              `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `hospitals`
---
-
-INSERT INTO `hospitals` (`id`, `name`, `address`, `contact`, `created_at`, `updated_at`) VALUES
-(1, 'Hospital Name One', 'Sylhet', '01737492874', '2021-03-08 17:48:20', '2021-03-08 17:48:20'),
-(2, 'Hospital Name Two', 'Dhaka', '01723963823', '2021-03-08 17:48:20', '2021-03-08 17:48:20');
-
 -- --------------------------------------------------------
 
 --
@@ -99,15 +74,6 @@ CREATE TABLE `images` (
                           `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `images`
---
-
-INSERT INTO `images` (`id`, `url`, `image_src`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'IMG_68853579885.png', 'post', 3, '2021-03-08 00:09:36', '2021-03-08 00:09:36'),
-(2, 'IMG_3822213164088.png', 'post', 3, '2021-03-08 00:09:36', '2021-03-08 00:09:36'),
-(3, 'IMG_1645614355533.png', 'post', 3, '2021-03-08 00:09:36', '2021-03-08 00:09:36');
-
 -- --------------------------------------------------------
 
 --
@@ -118,10 +84,26 @@ CREATE TABLE `notifications` (
                                  `id` bigint(20) UNSIGNED NOT NULL,
                                  `user_id` bigint(20) UNSIGNED NOT NULL,
                                  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                                 `common_id` int(11) DEFAULT NULL,
                                  `read_at` timestamp NULL DEFAULT NULL,
                                  `created_at` timestamp NULL DEFAULT NULL,
                                  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pharmacys`
+--
+
+CREATE TABLE `pharmacys` (
+                             `id` int(11) NOT NULL,
+                             `name` varchar(255) DEFAULT NULL,
+                             `contact` varchar(255) DEFAULT NULL,
+                             `address` varchar(255) DEFAULT NULL,
+                             `created_at` timestamp NULL DEFAULT NULL,
+                             `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -142,15 +124,6 @@ CREATE TABLE `posts` (
                          `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `title`, `description`, `animal_type`, `user_id`, `doctor_id`, `is_answered`, `view_count`, `created_at`, `updated_at`) VALUES
-(1, 'What makes a good blog post?', 'Before you write a blog, make sure you know the answers to questions like, \"Why would someone keep reading this entire blog post?\" and \"What makes our audience come back for more?\"\r\n\r\nTo start, a good blog post is interesting and educational. Blogs should answer questions and help readers resolve a challenge they\'re experiencing — and you have to do so in an interesting way.\r\n\r\nIt\'s not enough just to answer someone\'s questions — you also have to provide actionable steps while being engaging. For instance, your introduction should hook the reader and make them want to continue reading your post. Then, use examples to keep your readers interested in what you have to say.', 'Cat', 8, NULL, 0, 31, '2021-03-06 15:18:58', '2021-03-06 15:18:58'),
-(2, 'How to Write a Blog Post', 'Here are the steps you\'ll want to follow while writing a blog post.\r\n\r\n1. Understand your audience.\r\nBefore you start writing your blog post, make sure you have a clear understanding of your target audience.\r\n\r\nAsk questions like: What do they want to know about? And, what will resonate with them?\r\n\r\nThis is where creating your buyer personas comes in handy. Consider what you know about your buyer personas and their interests while you\'re coming up with a topic for your blog post.\r\n\r\nFor instance, if your readers are millennials looking to start a business, you probably don\'t need to provide them with information about getting started in social media — most of them already have that down.', 'Dog', 8, NULL, 0, 12, '2021-03-06 15:19:34', '2021-03-06 15:19:34'),
-(3, 'Check', 'check descriptions', 'dog', 9, NULL, 0, 12, '2021-03-08 00:09:36', '2021-03-08 00:09:36');
-
 -- --------------------------------------------------------
 
 --
@@ -169,17 +142,6 @@ CREATE TABLE `users` (
                          `created_at` timestamp NULL DEFAULT NULL,
                          `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `user_type`, `phone`, `address`, `specialists`, `password`, `created_at`, `updated_at`) VALUES
-(8, 'S M KAMAL HUSSAIN SHAHI', 's.m.kamalhussain@gmail.com', 'user', '01746799842', NULL, NULL, 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '2021-03-03 22:46:45', '2021-03-03 22:46:45'),
-(9, 'Admin', 'admin@gmail.com', 'admin', '01712591218', 'Moulvibazar', NULL, 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '2021-03-08 17:43:30', '2021-03-08 17:43:30'),
-(10, 'Doctor One', 'doctor@gmail.com', 'doctor', '01675539928', 'MOULVIBAZAR', 'Cat', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '2021-03-08 17:49:20', '2021-03-08 17:49:20'),
-(11, 'MD AKTHARUZZAMAN SHIBLU', 'mdshiblu39928@gmail.com', 'user', '01675539928', NULL, NULL, 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '2021-03-08 00:20:17', '2021-03-08 00:20:17'),
-(12, 'doctor add ', 'adddoctor@gmail.com', 'doctor', '01736598363', '80 OPORAJITA, MODDOPARA', 'Birds', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', '2021-03-08 00:25:12', '2021-03-08 00:25:12');
 
 --
 -- Indexes for dumped tables
@@ -220,6 +182,12 @@ ALTER TABLE `notifications`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `pharmacys`
+--
+ALTER TABLE `pharmacys`
+    ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -241,13 +209,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `comment_replies`
 --
 ALTER TABLE `comment_replies`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `hospitals`
@@ -259,25 +227,31 @@ ALTER TABLE `hospitals`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `pharmacys`
+--
+ALTER TABLE `pharmacys`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
